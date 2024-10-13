@@ -31,10 +31,10 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'two_factor_secret' => null,
-            'two_factor_recovery_codes' => null,
+            'two_factor_secret' => fake()->sha1(),
+            'two_factor_recovery_codes' => fake()->sha1(),
             'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
+            'profile_photo_path' => fake()->imageUrl(),
         ];
     }
 
