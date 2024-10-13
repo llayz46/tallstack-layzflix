@@ -61,14 +61,14 @@
                 @auth
                     <div class="relative flex-shrink-0" x-data="{ profileDropdown: false }">
                         <div>
-                            <button type="button" @click="profileDropdown = !profileDropdown" class="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-background" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <button type="button" @click="profileDropdown = !profileDropdown" class="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-background-normal" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
                                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                             </button>
                         </div>
 
-                        <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-neutral-900 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
+                        <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background-accent py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1"
                              x-show="profileDropdown" @click.outside="profileDropdown = false"
                              x-transition:enter="transition ease-out duration-100"
                              x-transition:enter-start="-transform opacity-0 scale-95"
@@ -78,10 +78,10 @@
                              x-transition:leave-end="-transform opacity-0 scale-95" x-cloak>
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="block px-4 py-2 text-sm text-gray-300 hover:bg-neutral-800 w-full text-left">Déconnexion</button>
+                                <button type="submit" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover w-full text-left">Déconnexion</button>
                             </form>
                         </div>
                     </div>

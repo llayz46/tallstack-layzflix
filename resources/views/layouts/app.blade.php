@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="bg-background">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="bg-background-normal">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +24,7 @@
 {{--                    </div>--}}
 {{--                </header>--}}
 {{--            @endif--}}
+
             <x-header />
 
             <main>

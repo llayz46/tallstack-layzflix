@@ -21,7 +21,12 @@ export default {
             },
             colors: {
                 'body': '#d4d4d8',
-                'background': '#07070e',
+                'background': {
+                    'normal': '#07070e',
+                    'accent': '#0b0b15',
+                    'accent-hover': '#0e0e1a',
+                    'accent-darker': '#090910',
+                },
                 'primary': {
                     '50': '#fef2f3',
                     '100': '#fde6e7',
