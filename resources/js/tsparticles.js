@@ -1,5 +1,4 @@
 tsParticles.load("tsparticles", {
-    id: "tsparticles",
     particles: {
         move: {
             enable: true,
@@ -9,13 +8,14 @@ tsParticles.load("tsparticles", {
             value: 60
         },
         size: {
-            value: {min: 1.5, max: 2.5}
+            value: { min: 1.5, max: 2.5 }
         },
         color: {
             value: "#ea546c"
         },
         opacity: {
-            value: {min: 0.25, max: 0.4}
+            value: { min: 0.25, max: 0.4 }
         },
     },
 })
+

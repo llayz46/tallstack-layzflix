@@ -33,7 +33,5 @@
         </div>
 
         @stack('modals')
-
-        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
     </body>
 </html>

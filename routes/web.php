@@ -10,3 +10,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         return view('dashboard');
     })->name('dashboard');
 });
+
+require_once __DIR__ . '/jetstream.php';
