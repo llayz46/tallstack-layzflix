@@ -5,3 +5,14 @@
 [x-cloak] {
     display: none;
 }
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+::selection {
+    color: white;
+    background: theme('colors.primary.800');
+}

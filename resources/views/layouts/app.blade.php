@@ -14,7 +14,7 @@
 
         <x-banner />
 
-        <div class="min-h-screen">
+        <div class="min-h-screen overflow-hidden">
 {{--            <livewire:navigation-menu />--}}
 
             <!-- Page Heading -->
@@ -31,6 +31,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <x-footer />
         </div>
 
         @stack('modals')

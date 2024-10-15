@@ -1,0 +1,1 @@
+<a {{ $attributes->class(['rounded-md border-t-2 border-primary-600/30 bg-primary-600/20 px-6 py-2.5 font-semibold text-primary-600 shadow-sm hover:bg-primary-600/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600']) }} wire:navigate>{{ $slot }}</a>

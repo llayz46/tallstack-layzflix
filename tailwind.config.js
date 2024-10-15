@@ -41,6 +41,18 @@ export default {
                     '950': '#48091a',
                 },
             },
+            backgroundImage: {
+                'conic-gradient': 'conic-gradient(from var(--angle), #b31d3f, #07070e)',
+            },
+            animation: {
+                'border-spin': '7s border-spin linear infinite',
+            },
+            keyframes: {
+                'border-spin': {
+                    '0%': { '--angle': '0deg' },
+                    '100%': { '--angle': '360deg' },
+                },
+            },
         },
     },
 
