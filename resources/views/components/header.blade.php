@@ -64,7 +64,7 @@
                             <button type="button" @click="profileDropdown = !profileDropdown" class="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-background-normal" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'https://ui-avatars.com/api/?background=ebf4ff&name='. auth()->user()->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
                             </button>
                         </div>
 
@@ -78,7 +78,7 @@
                              x-transition:leave-end="-transform opacity-0 scale-95" x-cloak>
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                            <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
+                            <a href="{{ route('settings.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover w-full text-left">Déconnexion</button>
@@ -119,7 +119,7 @@
             </div>
             <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Your Profile</a>
-                <a href="{{ route('profile.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800">Paramètres</a>
+                <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800">Paramètres</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800 w-full text-left">Déconnexion</button>
