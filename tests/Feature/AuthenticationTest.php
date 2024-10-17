@@ -10,12 +10,12 @@ test('login screen can be rendered', function () {
 
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create([
-        'password' => Hash::make('password'),
+        'password' => Hash::make('Password1.'),
     ]);
 
     $response = $this->post('/login', [
         'email' => $user->email,
-        'password' => 'password',
+        'password' => 'Password1.',
     ]);
 
     $this->assertAuthenticated();

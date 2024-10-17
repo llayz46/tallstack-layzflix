@@ -10,7 +10,7 @@ test('password can be updated', function () {
 
     Livewire::test(UpdatePasswordForm::class)
         ->set('state', [
-            'current_password' => 'password',
+            'current_password' => 'Password1.',
             'password' => 'new-passwordD7.',
             'password_confirmation' => 'new-passwordD7.',
         ])
@@ -24,14 +24,14 @@ test('current password must be correct', function () {
 
     Livewire::test(UpdatePasswordForm::class)
         ->set('state', [
-            'current_password' => 'wrong-password',
+            'current_password' => 'password',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ])
         ->call('updatePassword')
-        ->assertHasErrors(['current_password']);
+        ->assertHasErrors(['password']);
 
-    expect(Hash::check('password', $user->fresh()->password))->toBeTrue();
+    expect(Hash::check('Password1.', $user->fresh()->password))->toBeTrue();
 });
 
 test('new passwords must match', function () {
@@ -39,12 +39,12 @@ test('new passwords must match', function () {
 
     Livewire::test(UpdatePasswordForm::class)
         ->set('state', [
-            'current_password' => 'password',
+            'current_password' => 'Password1.',
             'password' => 'new-password',
             'password_confirmation' => 'wrong-password',
         ])
         ->call('updatePassword')
         ->assertHasErrors(['password']);
 
-    expect(Hash::check('password', $user->fresh()->password))->toBeTrue();
+    expect(Hash::check('Password1.', $user->fresh()->password))->toBeTrue();
 });

@@ -11,4 +11,4 @@ Route::get('/', Home::class)->name('home');
 //    })->name('dashboard');
 //});
 
-require_once __DIR__ . '/jetstream.php';
+require __DIR__ . '/jetstream.php';

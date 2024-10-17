@@ -9,7 +9,7 @@ test('user accounts can be deleted', function () {
     $this->actingAs($user = User::factory()->create());
 
     Livewire::test(DeleteUserForm::class)
-        ->set('password', 'password')
+        ->set('password', 'Password1.')
         ->call('deleteUser');
 
     expect($user->fresh())->toBeNull();

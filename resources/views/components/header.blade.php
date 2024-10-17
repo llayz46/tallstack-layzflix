@@ -64,7 +64,7 @@
                             <button type="button" @click="profileDropdown = !profileDropdown" class="relative flex rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-background-normal" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_path ? auth()->user()->profile_photo_path : 'https://ui-avatars.com/api/?background=ebf4ff&name='. auth()->user()->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
+                                <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. auth()->user()->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
                             </button>
                         </div>
 

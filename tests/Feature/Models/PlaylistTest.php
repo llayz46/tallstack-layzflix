@@ -91,3 +91,24 @@ it('can find playlist medias informations', function () {
         ->and($medias->last()->media_id)->toBe($media2->media_id)
         ->and($medias->last()->media_type)->toBe($media2->media_type);
 });
+
+it('can delete a playlist', function () {
+    $playlist = Playlist::factory()->create();
+
+    $playlist->delete();
+
+    expect(Playlist::find($playlist->id))->toBeNull();
+});
+
+it('can update a playlist', function () {
+    $playlist = Playlist::factory()->create();
+
+    $playlist->update([
+        'name' => 'Updated Playlist',
+        'description' => 'Updated description',
+    ]);
+
+    expect($playlist->name)->toBe('Updated Playlist')
+        ->and($playlist->description)->toBe('Updated description');
+});
+
