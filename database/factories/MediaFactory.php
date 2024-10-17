@@ -17,7 +17,8 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'media_id' => $this->faker->randomNumber(),
+            'media_type' => $this->faker->randomElement(['tv', 'movie']),
         ];
     }
 }

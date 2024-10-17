@@ -67,3 +67,27 @@ it('can remove media from playlist', function () {
 
     expect($playlist->medias->count())->toBe(0);
 });
+
+it('can find playlist medias informations', function () {
+    $playlist = Playlist::factory()->create();
+    $media = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+    ]);
+    $media2 = Media::create([
+        'media_id' => 10,
+        'media_type' => 'movie',
+    ]);
+
+    $playlist->medias()->attach($media->id);
+    $playlist->medias()->attach($media2->id);
+
+    $medias = $playlist->medias;
+
+    expect($medias->first()->id)->toBe($media->id)
+        ->and($medias->first()->media_id)->toBe($media->media_id)
+        ->and($medias->first()->media_type)->toBe($media->media_type)
+        ->and($medias->last()->id)->toBe($media2->id)
+        ->and($medias->last()->media_id)->toBe($media2->media_id)
+        ->and($medias->last()->media_type)->toBe($media2->media_type);
+});
