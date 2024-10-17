@@ -9,4 +9,9 @@ class Media extends Model
 {
     /** @use HasFactory<\Database\Factories\MediaFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'media_id',
+        'media_type',
+    ];
 }

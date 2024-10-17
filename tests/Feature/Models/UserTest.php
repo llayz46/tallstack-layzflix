@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Media;
 use App\Models\User;
 
 it('can create a user', function () {
@@ -113,4 +114,80 @@ it('can delete user profile photo', function () {
     ]);
 
     expect($user->profile_photo_path)->toBeNull();
+});
+
+it('can have a media in favorites', function () {
+    $user = User::factory()->create();
+    $media = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+    ]);
+
+    $user->favoriteMedias()->attach($media->media_id);
+
+    expect($user->favoriteMedias->first()->media_id)->toBe($media->media_id);
+});
+
+it('can have multiple medias in favorites', function () {
+    $user = User::factory()->create();
+    $media1 = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+    ]);
+    $media2 = Media::create([
+        'media_id' => 2,
+        'media_type' => 'movie',
+    ]);
+
+    $user->favoriteMedias()->attach($media1->media_id);
+    $user->favoriteMedias()->attach($media2->media_id);
+
+    expect($user->favoriteMedias->count())->toBe(2);
+});
+
+it('can remove a media from favorites', function () {
+    $user = User::factory()->create();
+    $media = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+    ]);
+
+    $user->favoriteMedias()->attach($media->media_id);
+    $user->favoriteMedias()->detach($media->media_id);
+
+    expect($user->favoriteMedias->count())->toBe(0);
+});
+
+it('can find user favorites medias informations', function () {
+    $user = User::factory()->create();
+    $media1 = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+    ]);
+    $media2 = Media::create([
+        'media_id' => 2,
+        'media_type' => 'movie',
+    ]);
+
+    $user->favoriteMedias()->attach($media1->media_id);
+    $user->favoriteMedias()->attach($media2->media_id);
+
+    $favorites = $user->favoriteMedias;
+
+    expect($favorites->first()->media_id)->toBe($media1->media_id)
+        ->and($favorites->first()->media_type)->toBe($media1->media_type)
+        ->and($favorites->last()->media_id)->toBe($media2->media_id)
+        ->and($favorites->last()->media_type)->toBe($media2->media_type);
+});
+
+it('can have many playlists', function () {
+    $user = User::factory()->create();
+
+    $user->playlists()->create([
+        'name' => 'Test Playlist',
+        'description' => 'Test Playlist Description',
+        'visibility' => true,
+    ]);
+
+    expect($user->playlists->count())->toBe(1);
 });
