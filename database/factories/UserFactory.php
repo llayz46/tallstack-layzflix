@@ -27,7 +27,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->unique()->userName(),
+            'username' => $username = fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'biography' => fake()->sentence(),
             'email_verified_at' => now(),
@@ -37,7 +37,7 @@ class UserFactory extends Factory
             'two_factor_secret' => fake()->sha1(),
             'two_factor_recovery_codes' => fake()->sha1(),
             'remember_token' => Str::random(10),
-            'profile_photo_path' => fake()->imageUrl(),
+            'profile_photo_path' => null,
         ];
     }
 
