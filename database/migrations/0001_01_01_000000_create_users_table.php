@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('biography')->nullable();
-            $table->unsignedSmallInteger('level')->default(1);
+            $table->unsignedTinyInteger('level')->default(1);
+            $table->boolean('premium')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

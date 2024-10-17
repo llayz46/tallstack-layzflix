@@ -77,4 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Playlist::class);
     }
+
+    public function isPremium(): bool
+    {
+        return $this->premium;
+    }
 }

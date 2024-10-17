@@ -191,3 +191,35 @@ it('can have many playlists', function () {
 
     expect($user->playlists->count())->toBe(1);
 });
+
+it('can be premium', function () {
+    $user = User::factory()->create([
+        'premium' => true,
+    ]);
+
+    expect($user->premium)->toBeTrue();
+});
+
+it('can be not premium', function () {
+    $user = User::factory()->create([
+        'premium' => false,
+    ]);
+
+    expect($user->premium)->toBeFalse();
+});
+
+it('can check if user is premium', function () {
+    $user = User::factory()->create([
+        'premium' => true,
+    ]);
+
+    expect($user->isPremium())->toBeTrue();
+});
+
+it('can have a level', function () {
+    $user = User::factory()->create([
+        'level' => 5,
+    ]);
+
+    expect($user->level)->toBe(5);
+});

@@ -29,7 +29,10 @@ class UserFactory extends Factory
         return [
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
+            'biography' => fake()->sentence(),
             'email_verified_at' => now(),
+            'premium' => fake()->boolean(),
+            'level' => fake()->numberBetween(1, 17),
             'password' => static::$password ??= Hash::make('Password1.'),
             'two_factor_secret' => fake()->sha1(),
             'two_factor_recovery_codes' => fake()->sha1(),
