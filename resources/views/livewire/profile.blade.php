@@ -4,7 +4,7 @@
             <div class="flex items-start space-x-5">
                 <div class="flex-shrink-0">
                     <div class="relative">
-                        <img class="h-16 w-16 rounded-full object-cover shadow-inner" src="{{ auth()->user()->profile_photo_path ? asset('storage/' . auth()->user()->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. auth()->user()->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
+                        <img class="h-16 w-16 rounded-full object-cover shadow-inner" src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. $user->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
                         <span class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -30,46 +30,42 @@
                             <x-button type="secondary" href="#" wire:navigate>Followers</x-button>
                         @endif
                     @else
-{{--                        @if(!auth()->user()->isFollowing($user))--}}
-{{--                            <form action="{{ route('follow.add', $user) }}" method="post">--}}
-{{--                                @csrf--}}
-{{--                                <x-button type="submit">Follow</x-button>--}}
-{{--                            </form>--}}
-{{--                        @else--}}
-{{--                            <form action="{{ route('follow.delete', $user) }}" method="post">--}}
-{{--                                @csrf--}}
-{{--                                @method('DELETE')--}}
-{{--                                <x-button type="submit">Unfollow</x-button>--}}
-{{--                            </form>--}}
-{{--                        @endif--}}
+                        @if(!auth()->user()->isFollowing($user))
+                            <x-button type="button" wire:click="follow({{ $user->id }})">Follow</x-button>
+                        @else
+                            <x-button type="button" wire:click="unfollow({{ $user->id }})">Unfollow</x-button>
+                        @endif
                     @endif
                 @endauth
 
                 @guest
-{{--                    <x-button href="{{ route('auth.login') }}" type="secondary">Message</x-button>--}}
-{{--                    <x-button href="{{ route('auth.login') }}">Add friend</x-button>--}}
+                    <x-button type="link" href="{{ route('login') }}" type="secondary">Message</x-button>
+                    <x-button type="link" href="{{ route('login') }}">Add friend</x-button>
                 @endguest
             </div>
         </div>
 
-{{--        <div class="sm:mt-4 flex flex-col max-[420px]:hidden space-y-1.5 md:block @if(!$numberOfReviews && !$numberOfMovies) sm:hidden @endif">--}}
-{{--            @if($user->isPremium())--}}
-{{--                <x-profile-premium-badge/>--}}
-{{--            @endif--}}
+        <div class="mt-4">
+            @if($user->isPremium())
+                <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset text-primary-600 bg-gradient-to-tr from-primary-500/10 to-primary-950/30 ring-rose-500/20">Premium</span>
+            @endif
 
             <x-profile-level-badge :level="$user->level"/>
 
 {{--            @if($numberOfMovies)--}}
+            <x-profile-info-badge>54 Films et séries en favoris</x-profile-info-badge>
 {{--                <x-badge tag="span">{{ $numberOfMovies }} Favorite movie/serie(s)</x-badge>--}}
 {{--            @endif--}}
 
 {{--            @if($numberOfReviews)--}}
+            <x-profile-info-badge>33 Critiques publiées</x-profile-info-badge>
 {{--                <x-badge tag="span">{{ $numberOfReviews }} Review(s)</x-badge>--}}
 {{--            @endif--}}
 
 {{--            @if($followers)--}}
+            <x-profile-info-badge>7 Followers</x-profile-info-badge>
 {{--                <x-badge tag="span">{{ $followers }} Follower(s)</x-badge>--}}
 {{--            @endif--}}
-{{--        </div>--}}
+        </div>
     </div>
 </div>
