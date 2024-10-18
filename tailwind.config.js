@@ -27,6 +27,9 @@ export default {
                     'accent-hover': '#0e0e1a',
                     'accent-darker': '#090910',
                 },
+                'border': {
+                    'normal': '#1e1e2a',
+                },
                 'primary': {
                     '50': '#fef2f3',
                     '100': '#fde6e7',

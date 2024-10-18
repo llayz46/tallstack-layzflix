@@ -10,4 +10,6 @@
     </a>
 @elseif($type === 'secondary')
     <a {{ $attributes->merge(['class' => 'inline-flex items-center justify-center rounded-md bg-background-accent hover:bg-background-accent-hover px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-background-accent-hover']) }}>{{ $slot }}</a>
+@elseif($type === 'secondary-button')
+    <button {{ $attributes->merge(['class' => 'inline-flex items-center justify-center rounded-md bg-background-accent hover:bg-background-accent-hover px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-background-accent-hover']) }}>{{ $slot }}</button>
 @endif
