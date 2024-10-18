@@ -77,7 +77,7 @@
                              x-transition:leave-start="transform opacity-100 scale-100"
                              x-transition:leave-end="-transform opacity-0 scale-95" x-cloak>
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1">Profile</a>
                             <a href="{{ route('settings.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Your Profile</a>
+                <a href="{{ route('profile') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Profile</a>
                 <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800">Paramètres</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

@@ -75,6 +75,10 @@ return [
 
     'home' => '/settings',
 
+    'redirects' => [
+        'profile_photo' => '/settings',
+     ],
+
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
