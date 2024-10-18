@@ -82,4 +82,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->premium;
     }
+
+//    public function isFollowing()
+//    {
+//
+//    }
 }

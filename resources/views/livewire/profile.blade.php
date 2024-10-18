@@ -1,5 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 mt-8 sm:mt-6">
-    @php $user = auth()->user() @endphp
+<div class="border-t border-background-accent-hover mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-8 sm:pt-6">
     <div class="flex justify-center min-[420px]:justify-between">
         <div>
             <div class="flex items-start space-x-5">
@@ -11,7 +10,7 @@
                 </div>
                 <div class="pt-1.5">
                     <h1 class="text-2xl font-bold text-white">{{ $user->username }}</h1>
-                    <p class="text-sm font-medium text-gray-300">{{ Str::ucfirst($user->biography) }}</p>
+                    <p class="text-sm font-medium text-neutral-400">{{ Str::ucfirst($user->biography) }}</p>
                 </div>
             </div>
             <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse">
@@ -21,14 +20,14 @@
                     @endif
 
                     @if($user->id === auth()->user()->id)
-                        <x-button type="link" href="#">Edit profile</x-button>
+                        <x-button type="link" href="{{ route('settings.show') }}" wire:navigate>Edit profile</x-button>
 
 {{--                        @if(!request()->routeIs('profile.following'))--}}
-                            <x-button type="secondary" href="#">Suivis</x-button>
+                            <x-button type="secondary" href="#" wire:navigate>Suivis</x-button>
 {{--                        @endif--}}
 
                         @if(auth()->user()->isPremium())
-                            <x-button type="secondary" href="#">Followers</x-button>
+                            <x-button type="secondary" href="#" wire:navigate>Followers</x-button>
                         @endif
                     @else
 {{--                        @if(!auth()->user()->isFollowing($user))--}}
