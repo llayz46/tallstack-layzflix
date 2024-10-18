@@ -20,6 +20,14 @@ it('can create a user with a specific username', function () {
     expect($user->username)->toBe('Test User');
 });
 
+it('can have a slug', function () {
+    $user = User::factory()->create();
+
+    $username = $user->username;
+
+    expect($user->slug)->toBe(\Illuminate\Support\Str::slug($username));
+});
+
 it('can create a user with a specific email', function () {
     $user = User::factory()->create([
         'email' => 'test@test.fr',
