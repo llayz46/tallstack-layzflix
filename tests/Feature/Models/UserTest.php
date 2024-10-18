@@ -231,3 +231,52 @@ it('can have a level', function () {
 
     expect($user->level)->toBe(5);
 });
+
+it('can follow another user', function () {
+    $user = User::factory()->create();
+    $userToFollow = User::factory()->create();
+
+    $user->following()->attach($userToFollow->id);
+
+    expect($user->following->first()->id)->toBe($userToFollow->id);
+});
+
+it('can have follower', function () {
+    $user = User::factory()->create();
+    $follower = User::factory()->create();
+
+    $follower->following()->attach($user->id);
+
+    expect($user->followers->first()->id)->toBe($follower->id);
+});
+
+it('can have many followers', function () {
+    $user = User::factory()->create();
+    $follower1 = User::factory()->create();
+    $follower2 = User::factory()->create();
+
+    $follower1->following()->attach($user->id);
+    $follower2->following()->attach($user->id);
+
+    expect($user->followers->count())->toBe(2);
+});
+
+it('can have many following', function () {
+    $user = User::factory()->create();
+    $following1 = User::factory()->create();
+    $following2 = User::factory()->create();
+
+    $user->following()->attach($following1->id);
+    $user->following()->attach($following2->id);
+
+    expect($user->following->count())->toBe(2);
+});
+
+it('can check if an specific user is following', function () {
+    $user = User::factory()->create();
+    $userToFollow = User::factory()->create();
+
+    $user->following()->attach($userToFollow);
+
+    expect($user->isFollowing($userToFollow))->toBeTrue();
+});
