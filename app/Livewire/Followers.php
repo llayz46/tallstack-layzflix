@@ -11,15 +11,20 @@ class Followers extends Component
 {
     public ?Collection $followers;
 
-    public User $selectedUser;
-
     public int $perPage = 10;
 
     public User $user;
 
-    public function loadFollowers($user)
+    private function loadFollowers($user)
     {
-        $this->followers = $user->followers->take($this->perPage);
+        $followers = $user->followers
+            ->map(function ($follower) {
+            $follower->profile_photo_path = $follower->getProfilePhoto();
+            $follower->is_following = Auth::user()->isFollowing($follower);
+            return $follower;
+        });
+
+        $this->followers = $followers->take($this->perPage);
     }
 
     public function mount(User $user)
@@ -27,14 +32,6 @@ class Followers extends Component
         $this->user = $user;
 
         $this->loadFollowers($user);
-
-        $this->selectedUser = $this->followers->first();
-    }
-
-
-    public function selectUser(User $user)
-    {
-        $this->selectedUser = $user;
     }
 
     public function loadMore() {
