@@ -13,12 +13,12 @@
                     <p class="text-sm font-medium text-neutral-400">{{ Str::ucfirst($user->biography) }}</p>
                 </div>
             </div>
-            <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse" x-data="{ followersModal: false }">
-                @if(auth()->user()->isPremium())
-                    <x-modal.followers/>
-                @endif
-
+            <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse" x-data="{ followersModal: false }" @keydown.escape="followersModal = false">
                 @auth
+                    @if(auth()->user()->isPremium())
+                        <x-modal.followers :$user/>
+                    @endif
+
                     @if($user->id !== auth()->user()->id)
                         <x-button class="cursor-not-allowed" type="secondary">Message</x-button>
                     @endif

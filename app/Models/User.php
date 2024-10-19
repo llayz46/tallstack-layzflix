@@ -97,4 +97,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->following->contains($user);
     }
+
+    public function getProfilePhoto(): string
+    {
+        return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. $this->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg';
+    }
 }

@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(25)->create();
 
         User::factory()->create([
             'username' => 'Test User',
@@ -30,5 +30,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test'),
             'premium' => true,
         ]);
+
+        $johnDoe = User::where('email', 'john@doe.fr')->first();
+        $johnDoe->followers()->attach(range(4, 23));
     }
 }

@@ -16,3 +16,8 @@
     color: white;
     background: theme('colors.primary.800');
 }
+
+.no-scroll-bar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
