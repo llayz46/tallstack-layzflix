@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(25)->create();
-
         User::factory()->create([
             'username' => 'Test User',
             'slug' => 'test-user',
@@ -22,6 +20,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test'),
             'premium' => false,
         ]);
+
+        User::factory(25)->create();
 
         User::factory()->create([
             'username' => 'John Doe',
@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $johnDoe = User::where('email', 'john@doe.fr')->first();
+        $johnDoe->followers()->attach(1);
         $johnDoe->followers()->attach(range(4, 23));
     }
 }

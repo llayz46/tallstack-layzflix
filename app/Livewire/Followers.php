@@ -11,7 +11,7 @@ class Followers extends Component
 {
     public ?Collection $followers;
 
-    public User $selectedUser;
+//    public User $selectedUser;
 
     public int $perPage = 10;
 
@@ -28,14 +28,14 @@ class Followers extends Component
 
         $this->loadFollowers($user);
 
-        $this->selectedUser = $this->followers->first();
+//        $this->selectedUser = $this->followers->first();
     }
 
 
-    public function selectUser(User $user)
-    {
-        $this->selectedUser = $user;
-    }
+//    public function selectUser(User $user)
+//    {
+//        $this->selectedUser = $user;
+//    }
 
     public function loadMore() {
         $this->perPage += 10;

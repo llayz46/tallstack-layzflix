@@ -1,4 +1,10 @@
 <div class="mx-auto max-w-3xl transform divide-y divide-border-normal overflow-hidden rounded-xl bg-background-accent shadow-2xl transition-all"
+     x-data="{
+         selectedUser: null,
+         selectUser(follower) {
+             this.selectedUser = follower;
+         },
+      }"
      @click.outside="followersModal = false" x-show="followersModal"
      x-transition:enter="ease-out duration-300"
      x-transition:enter-start="opacity-0 scale-95"
@@ -13,65 +19,55 @@
         <input type="text" class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-300 placeholder:text-neutral-400 focus:ring-0 sm:text-sm" placeholder="Rechercher..." role="combobox" aria-expanded="false" aria-controls="options">
     </div>
 
-    <div class="flex transform-gpu divide-x divide-border-normal">
-        <!-- Preview Visible: "sm:h-96" -->
+    <div class="flex transform-gpu divide-x divide-border-normal" x-data="{ image: null }">
         <div class="max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4 sm:h-96 no-scroll-bar">
-            <!-- Default state, show/hide based on command palette state. -->
             <h2 class="mb-4 mt-2 text-xs font-semibold text-neutral-400">Vous suit :</h2>
 
-            <!-- Results, show/hide based on command palette state. -->
             <ul class="-mx-2 text-sm text-neutral-400" role="list">
                 @foreach($followers as $follower)
-                    <li class="group flex cursor-default select-none items-center rounded-md p-2 @if($follower->id === $selectedUser->id) bg-background-accent-hover text-gray-300 @else hover:text-gray-300 hover:bg-background-accent-hover @endif" role="option" tabindex="-1" wire:click="selectUser({{ $follower }})">
+                    <li class="group flex cursor-default select-none items-center rounded-md p-2"
+                        :class="selectedUser?.id === {{ $follower->id }} ? 'text-gray-300 bg-background-accent-hover' : 'hover:text-gray-300 hover:bg-background-accent-hover'"
+                        role="option" tabindex="-1" wire:key="{{ $follower->id }}"
+                        @click="selectUser({{$follower}}); image = '{{ $follower->getProfilePhoto() }}'">
                         <img src="{{ $follower->getProfilePhoto() }}" alt="Photo de profil de : {{ $follower->username }}" class="h-6 w-6 flex-none rounded-full">
                         <span class="ml-3 flex-auto truncate">{{ $follower->username }}</span>
-                        <svg class="ml-3 @if($follower->id !== $selectedUser->id) hidden group-hover:block @endif h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <svg class="ml-3 h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
+                             :class="{ 'hidden group-hover:block': selectedUser?.id !== {{ $follower->id }} }"
+                             fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                         </svg>
                     </li>
                 @endforeach
-{{--                <li class="group flex cursor-default select-none items-center rounded-md p-2 text-gray-300 bg-background-accent-hover" role="option" tabindex="-1">--}}
-{{--                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-6 w-6 flex-none rounded-full">--}}
-{{--                    <span class="ml-3 flex-auto truncate">Tom Cook</span>--}}
-{{--                    <svg class="ml-3 h-5 w-5 flex-none text-gray-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />--}}
-{{--                    </svg>--}}
-{{--                </li>--}}
-{{--                <li class="group flex cursor-default select-none items-center rounded-md p-2" role="option" tabindex="-1">--}}
-{{--                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="h-6 w-6 flex-none rounded-full">--}}
-{{--                    <span class="ml-3 flex-auto truncate">Courtney Henry</span>--}}
-{{--                    <svg class="ml-3 hidden h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />--}}
-{{--                    </svg>--}}
-{{--                </li>--}}
+
                 <div x-intersect.full="$wire.loadMore()">
-                    <div class="sr-only" wire:loading>Loading more</div>
+                    <div class="h-8 w-full my-2 rounded-md bg-shimmer animate-shimmer bg-[length:200%_100%] transform-gpu" wire:loading></div>
                 </div>
             </ul>
-
         </div>
 
-        <div class="hidden h-96 w-1/2 flex-none flex-col divide-y divide-border-normal overflow-y-auto sm:flex">
-            <div class="flex-none p-6 text-center">
-                <img src="{{ $selectedUser->getProfilePhoto() }}" alt="" class="mx-auto h-16 w-16 rounded-full">
-                <h2 class="mt-3 font-semibold text-gray-300">{{ $selectedUser->username }}</h2>
-                <p class="text-sm leading-6 text-neutral-400">{{ $selectedUser->biography }}</p>
-            </div>
-            <div class="flex flex-auto flex-col justify-between p-6">
-                <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-neutral-400">
-                    <dt class="col-end-1 font-semibold text-gray-300">Niveau</dt>
-                    <dd>{{ $selectedUser->level }}</dd>
-                    <dt class="col-end-1 font-semibold text-gray-300">Critiques</dt>
-                    <dd>14</dd>
-                    <dt class="col-end-1 font-semibold text-gray-300">Suivre en retour</dt>
-                    @if(!auth()->user()->isFollowing($selectedUser))
-                        <dd class="truncate text-primary-600 underline"><button wire:click="follow({{ $selectedUser->id }})">Follow</button></dd>
-                    @else
-                        <dd class="truncate text-primary-600 underline"><button wire:click="unfollow({{ $selectedUser->id }})">Unfollow</button></dd>
-                    @endif
-                </dl>
-                <x-button class="cursor-not-allowed" disabled>Message</x-button>
-            </div>
+        <div class="hidden h-96 w-1/2 flex-none flex-col overflow-y-auto sm:flex no-scroll-bar">
+            <template x-if="selectedUser">
+                <div class="h-full flex flex-col divide-y divide-border-normal">
+                    <div class="flex-none p-6 text-center">
+{{--                        <img src="{{ $selectedUser->getProfilePhoto() }}" alt="" class="mx-auto h-16 w-16 rounded-full">--}}
+                        <img x-bind:src="image" alt="" class="mx-auto h-16 w-16 rounded-full">
+                        <h2 class="mt-3 font-semibold text-gray-300" x-text="selectedUser.username"></h2>
+                        <p class="text-sm leading-6 text-neutral-400" x-text="selectedUser.biography"></p>
+                    </div>
+                    <div class="flex flex-grow flex-col gap-6 justify-between p-6">
+                        <dl class="grid grid-cols-1 gap-x-6 gap-y-3 text-sm text-neutral-400">
+                            <dt class="col-end-1 font-semibold text-gray-300">Niveau</dt>
+                            <dd x-text="selectedUser.level"></dd>
+                            <dt class="col-end-1 font-semibold text-gray-300">Critiques</dt>
+                            <dd>14</dd>
+                            <dt>
+                                <a :href="`/${selectedUser.slug}/profile`" class="text-primary-600 hover:underline">Voir le profil</a>
+                            </dt>
+                        </dl>
+                        <x-button class="cursor-not-allowed" disabled>Message</x-button>
+                    </div>
+                </div>
+            </template>
         </div>
     </div>
 

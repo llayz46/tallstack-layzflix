@@ -46,15 +46,21 @@ export default {
             },
             backgroundImage: {
                 'conic-gradient': 'conic-gradient(from var(--angle), #b31d3f, #07070e)',
+                'shimmer': 'linear-gradient(33deg, rgba(14,14,26,0.2) 0%, rgba(14,14,26,0.4) 25%, rgba(14,14,26,0.6) 50%, rgba(14,14,26,0.4) 75%, rgba(14,14,26,0.2) 100%)',
             },
             animation: {
                 'border-spin': '7s border-spin linear infinite',
+                'shimmer': 'shimmer 5.5s linear infinite',
             },
             keyframes: {
                 'border-spin': {
                     '0%': { '--angle': '0deg' },
                     '100%': { '--angle': '360deg' },
                 },
+                shimmer: {
+                    '0%': { backgroundPosition: '0 0' },
+                    '100%': { backgroundPosition: '-200% 0' },
+                }
             },
         },
     },
