@@ -16,7 +16,7 @@
         <svg class="pointer-events-none absolute left-4 top-3.5 h-5 w-5 text-neutral-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
-        <input type="text" class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-300 placeholder:text-neutral-400 focus:ring-0 sm:text-sm" placeholder="Rechercher..." role="combobox" aria-expanded="false" aria-controls="options">
+        <input type="text" wire:model.live.debounce.150ms="search" class="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-300 placeholder:text-neutral-400 focus:ring-0 sm:text-sm" placeholder="Rechercher..." role="combobox" aria-expanded="false" aria-controls="options">
     </div>
 
     <div class="flex transform-gpu divide-x divide-border-normal" x-data="{ image: null }">
@@ -28,8 +28,8 @@
                     <li class="group flex cursor-default select-none items-center rounded-md p-2"
                         :class="selectedUser?.id === {{ $follower->id }} ? 'text-gray-300 bg-background-accent-hover' : 'hover:text-gray-300 hover:bg-background-accent-hover'"
                         role="option" tabindex="-1" wire:key="{{ $follower->id }}"
-                        @click="selectUser({{$follower}}); image = '{{ $follower->getProfilePhoto() }}'">
-                        <img src="{{ $follower->getProfilePhoto() }}" alt="Photo de profil de : {{ $follower->username }}" class="h-6 w-6 flex-none rounded-full">
+                        @click="selectUser({ id: {{ $follower->id }}, username: '{{ $follower->username }}', profile_photo_path: '{{ $follower->getProfilePhoto() }}', slug: '{{ $follower->slug }}' })">
+                        <img src="{{ $follower->getProfilePhoto() }}" alt="Photo de profil de : {{ $follower->username }}" class="h-6 w-6 flex-none rounded-full object-cover">
                         <span class="ml-3 flex-auto truncate">{{ $follower->username }}</span>
                         <svg class="ml-3 h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
                              :class="{ 'hidden group-hover:block': selectedUser?.id !== {{ $follower->id }} }"
@@ -49,8 +49,7 @@
             <template x-if="selectedUser">
                 <div class="h-full flex flex-col divide-y divide-border-normal">
                     <div class="flex-none p-6 text-center">
-{{--                        <img src="{{ $selectedUser->getProfilePhoto() }}" alt="" class="mx-auto h-16 w-16 rounded-full">--}}
-                        <img x-bind:src="image" alt="" class="mx-auto h-16 w-16 rounded-full">
+                        <img x-bind:src="selectedUser.profile_photo_path" alt="" class="mx-auto h-16 w-16 rounded-full object-cover">
                         <h2 class="mt-3 font-semibold text-gray-300" x-text="selectedUser.username"></h2>
                         <p class="text-sm leading-6 text-neutral-400" x-text="selectedUser.biography"></p>
                     </div>
@@ -71,12 +70,10 @@
         </div>
     </div>
 
-    <!-- Empty state, show/hide based on command palette state -->
-    <div class="px-6 py-14 text-center text-sm sm:px-14">
-        <svg class="mx-auto h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+    <div class="px-6 py-2 text-center text-sm sm:px-14">
+        <svg class="mx-auto h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
         </svg>
-        <p class="mt-4 font-semibold text-gray-900">No people found</p>
-        <p class="mt-2 text-gray-500">We couldn’t find anything with that term. Please try again.</p>
+        <p class="text-neutral-400">Fonctionnalités réservées aux membres premium</p>
     </div>
 </div>
