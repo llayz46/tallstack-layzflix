@@ -13,11 +13,13 @@
                     <p class="text-sm font-medium text-neutral-400">{{ Str::ucfirst($user->biography) }}</p>
                 </div>
             </div>
-            <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse" x-data="{ followersModal: false }" @keydown.escape="followersModal = false">
+            <div class="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-3 sm:space-y-0 sm:space-x-reverse" x-data="{ followersModal: false, followingsModal: false }" @keydown.escape="followersModal = false; followingsModal = false">
                 @auth
                     @if(auth()->user()->isPremium())
                         <x-modal.followers :$user/>
                     @endif
+
+                    <x-modal.followings :$user/>
 
                     @if($user->id !== auth()->user()->id)
                         <x-button class="cursor-not-allowed" type="secondary">Message</x-button>
@@ -26,9 +28,7 @@
                     @if($user->id === auth()->user()->id)
                         <x-button type="link" href="{{ route('settings.show') }}" wire:navigate>Modifier profile</x-button>
 
-{{--                        @if(!request()->routeIs('profile.following'))--}}
-                            <x-button type="secondary-button">Suivis</x-button>
-{{--                        @endif--}}
+                        <x-button type="secondary-button" @click="followingsModal = true">Suivis</x-button>
 
                         @if(auth()->user()->isPremium())
                             <x-button type="secondary-button" @click="followersModal = true">Followers</x-button>

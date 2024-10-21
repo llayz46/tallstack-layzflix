@@ -17,6 +17,10 @@ class Profile extends Component
 
     public function follow(User $user)
     {
+        if (Auth::user()->is($user)) {
+            return;
+        }
+
         Auth::user()->following()->attach($user);
     }
 

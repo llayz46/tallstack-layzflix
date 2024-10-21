@@ -1,11 +1,11 @@
 <div class="mx-auto max-w-3xl transform divide-y divide-border-normal overflow-hidden rounded-xl bg-background-accent shadow-2xl transition-all"
      x-data="{
          selectedUser: null,
-         selectUser(follower) {
-             this.selectedUser = follower;
+         selectUser(following) {
+             this.selectedUser = following;
          },
       }"
-     @click.outside="followersModal = false" x-show="followersModal"
+     @click.outside="followingsModal = false" x-show="followingsModal"
      x-transition:enter="ease-out duration-300"
      x-transition:enter-start="opacity-0 scale-95"
      x-transition:enter-end="opacity-100 scale-100"
@@ -24,15 +24,15 @@
             <h2 class="mb-4 mt-2 text-xs font-semibold text-neutral-400">Vous suit :</h2>
 
             <ul class="-mx-2 text-sm text-neutral-400" role="list">
-                @foreach($followers as $follower)
+                @foreach($followings as $following)
                     <li class="group flex cursor-default select-none items-center rounded-md p-2"
-                        :class="selectedUser?.id === {{ $follower->id }} ? 'text-gray-300 bg-background-accent-hover' : 'hover:text-gray-300 hover:bg-background-accent-hover'"
-                        role="option" tabindex="-1" wire:key="{{ $follower->id }}"
-                        @click="selectUser({ id: {{ $follower->id }}, username: '{{ $follower->username }}', biography: '{{ $follower->biography }}', profile_photo_path: '{{ $follower->getProfilePhoto() }}', slug: '{{ $follower->slug }}' })">
-                        <img src="{{ $follower->getProfilePhoto() }}" alt="Photo de profil de : {{ $follower->username }}" class="h-6 w-6 flex-none rounded-full object-cover">
-                        <span class="ml-3 flex-auto truncate">{{ $follower->username }}</span>
+                        :class="selectedUser?.id === {{ $following->id }} ? 'text-gray-300 bg-background-accent-hover' : 'hover:text-gray-300 hover:bg-background-accent-hover'"
+                        role="option" tabindex="-1" wire:key="{{ $following->id }}"
+                        @click="selectUser({ id: {{ $following->id }}, username: '{{ $following->username }}', biography: '{{ $following->biography }}', profile_photo_path: '{{ $following->getProfilePhoto() }}', slug: '{{ $following->slug }}' })">
+                        <img src="{{ $following->getProfilePhoto() }}" alt="Photo de profil de : {{ $following->username }}" class="h-6 w-6 flex-none rounded-full object-cover">
+                        <span class="ml-3 flex-auto truncate">{{ $following->username }}</span>
                         <svg class="ml-3 h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
-                             :class="{ 'hidden group-hover:block': selectedUser?.id !== {{ $follower->id }} }"
+                             :class="{ 'hidden group-hover:block': selectedUser?.id !== {{ $following->id }} }"
                              fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                         </svg>
@@ -68,12 +68,5 @@
                 </div>
             </template>
         </div>
-    </div>
-
-    <div class="px-6 py-2 text-center text-sm sm:px-14">
-        <svg class="mx-auto h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-        </svg>
-        <p class="text-neutral-400">Fonctionnalités réservées aux membres premium</p>
     </div>
 </div>
