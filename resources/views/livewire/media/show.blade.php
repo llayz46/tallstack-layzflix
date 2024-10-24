@@ -60,7 +60,7 @@
                                 </svg>
                                 Favoris
                             </a>
-                            <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">45</p>
+                            <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">{{ $favoriteCount }}</p>
                         </span>
                     @endguest
 
@@ -72,7 +72,7 @@
                                 </svg>
                                 {{ $isFavorite ? 'Supprimer des favoris' : 'Ajouter aux favoris' }}
                             </button>
-                            <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">45</p>
+                            <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">{{ $favoriteCount }}</p>
                         </div>
 
                         <button type="button" class="rounded-full bg-primary-600 p-1.5 ml-2 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
