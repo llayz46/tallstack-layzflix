@@ -45,9 +45,9 @@
         </x-homepage.section-block-title>
 
         <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 xl:gap-x-8 mt-6 lg:mt-8">
-            <x-card.media-top-rated/>
-            <x-card.media-top-rated/>
-            <x-card.media-top-rated/>
+{{--            <x-card.media/>--}}
+{{--            <x-card.media/>--}}
+{{--            <x-card.media/>--}}
         </div>
     </x-homepage.section-wrapper>
 

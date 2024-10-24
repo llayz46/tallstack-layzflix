@@ -10,7 +10,7 @@
             </div>
             <div class="min-w-0 flex-1 md:px-8 lg:px-0 mx-auto max-w-screen-sm">
                 <div class="flex items-center px-6 py-4 md:max-w-3xl lg:mx-0 lg:max-w-none xl:px-0">
-                    <div class="w-full">
+                    <form class="w-full" action="{{ route('browse') }}" method="GET">
                         <label for="search" class="sr-only">Rechercher</label>
                         <div class="relative flex items-center"
                              x-data="{
@@ -33,12 +33,12 @@
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <input id="search" x-ref="input" x-bind:focus="inputFocused" name="search" @keydown.window.prevent.ctrl.k="search = true" class="block w-full rounded-md border-0 bg-transparent py-1.5 pl-10 pr-3 text-neutral-300 ring-1 ring-inset ring-neutral-700 placeholder:text-neutral-500 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6" placeholder="Rechercher" type="text">
+                            <input id="search" x-ref="input" x-bind:focus="inputFocused" name="q" @keydown.window.prevent.ctrl.k="search = true" class="block w-full rounded-md border-0 bg-transparent py-1.5 pl-10 pr-3 text-neutral-300 ring-1 ring-inset ring-neutral-700 placeholder:text-neutral-500 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm sm:leading-6" placeholder="Rechercher" type="text">
                             <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5 cursor-default">
                                 <kbd class="inline-flex items-center rounded border border-neutral-600 px-1 font-sans text-xs text-neutral-400">⌘K</kbd>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="flex items-center md:absolute md:inset-y-0 md:right-0 lg:hidden">

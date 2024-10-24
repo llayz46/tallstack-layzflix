@@ -14,7 +14,7 @@
 
         <x-banner />
 
-        <div class="min-h-screen overflow-hidden">
+        <div class="min-h-screen overflow-hidden flex flex-col">
 {{--            <livewire:navigation-menu />--}}
 
             <!-- Page Heading -->
