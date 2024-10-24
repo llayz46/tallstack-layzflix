@@ -29,7 +29,13 @@ class Show extends Component
 
     public function countFavorites()
     {
-        $this->favoriteCount = optional(Media::where('media_id', $this->media['id'])->first())->favoritedByUsers->count() ?? 0;
+        $media = Media::where('media_id', $this->media['id'])->first();
+
+        if ($media) {
+            $this->favoriteCount = $media->favoritedByUsers()->count();
+        } else {
+            $this->favoriteCount = 0;
+        }
     }
 
     public function favorite($id, $type, $title, $overview)
@@ -39,7 +45,7 @@ class Show extends Component
         $media = Media::firstOrCreate([
             'media_id' => $id,
             'media_type' => $type,
-            'title' => $title,
+            'normalized_title' => $title,
             'overview' => $overview,
         ]);
 
