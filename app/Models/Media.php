@@ -14,6 +14,8 @@ class Media extends Model
     protected $fillable = [
         'media_id',
         'media_type',
+        'title',
+        'overview',
     ];
 
     public function reviews(): HasMany

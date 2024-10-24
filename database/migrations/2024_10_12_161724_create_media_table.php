@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('media_id');
             $table->string('media_type');
+            $table->string('title');
+            $table->string('overview');
             $table->timestamps();
         });
     }

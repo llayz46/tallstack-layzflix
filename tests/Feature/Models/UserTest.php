@@ -129,6 +129,8 @@ it('can have a media in favorites', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
 
     $user->favoriteMedias()->attach($media->media_id);
@@ -141,10 +143,14 @@ it('can have multiple medias in favorites', function () {
     $media1 = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
     $media2 = Media::create([
         'media_id' => 2,
         'media_type' => 'movie',
+        'title' => 'Test Movie 2',
+        'overview' => 'Test Movie Overview 2',
     ]);
 
     $user->favoriteMedias()->attach($media1->media_id);
@@ -158,6 +164,8 @@ it('can remove a media from favorites', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
 
     $user->favoriteMedias()->attach($media->media_id);
@@ -171,10 +179,14 @@ it('can find user favorites medias informations', function () {
     $media1 = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
     $media2 = Media::create([
         'media_id' => 2,
         'media_type' => 'movie',
+        'title' => 'Test Movie 2',
+        'overview' => 'Test Movie Overview 2',
     ]);
 
     $user->favoriteMedias()->attach($media1->media_id);
@@ -186,6 +198,32 @@ it('can find user favorites medias informations', function () {
         ->and($favorites->first()->media_type)->toBe($media1->media_type)
         ->and($favorites->last()->media_id)->toBe($media2->media_id)
         ->and($favorites->last()->media_type)->toBe($media2->media_type);
+});
+
+it('can find specific user favorite media informations', function () {
+    $user = User::factory()->create();
+    $media1 = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+        'title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
+    ]);
+    $media2 = Media::create([
+        'media_id' => 2,
+        'media_type' => 'movie',
+        'title' => 'Test Movie 2',
+        'overview' => 'Test Movie Overview 2',
+    ]);
+
+    $user->favoriteMedias()->attach($media1->media_id);
+    $user->favoriteMedias()->attach($media2->media_id);
+
+    $favorites = $user->favoriteMedias;
+
+    $favoriteMedia = $favorites->where('media_id', 1)->first();
+
+    expect($favoriteMedia->media_id)->toBe($media1->media_id)
+        ->and($favoriteMedia->media_type)->toBe($media1->media_type);
 });
 
 it('can have many playlists', function () {

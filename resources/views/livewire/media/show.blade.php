@@ -65,24 +65,15 @@
                     @endguest
 
                     @auth
-                        <form action="" method="post" class="isolate inline-flex rounded-md shadow-sm mt-6">
-                            @csrf
-                            <input type="hidden" name="movie_id" value="movie-id">
-                            <button class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-background-accent-hover hover:bg-background-accent/50 focus:z-10">
-{{--                                @if(str_contains(auth()->user()->favorite_media, $movie['id']))--}}
-{{--                                    <svg class="-ml-0.5 h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                    <path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 001.075.676L10 15.082l5.925 2.844A.75.75 0 0017 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0010 2z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-{{--                                    Favorite--}}
-{{--                                @else--}}
-{{--                                    <svg class="-ml-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">--}}
-{{--                                        <path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 001.075.676L10 15.082l5.925 2.844A.75.75 0 0017 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0010 2z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-{{--                                    Add Favorite--}}
-{{--                                @endif--}}
+                        <div class="isolate inline-flex rounded-md shadow-sm mt-6">
+                            <button wire:click="favorite({{ $media['id'] }}, '{{ $media['media_type'] }}', '{{ $media['normalized_title'] }}', '{{ addslashes($media['overview']) }}')" class="relative inline-flex items-center gap-x-1.5 rounded-l-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-background-accent-hover hover:bg-background-accent/50 focus:z-10">
+                                <svg @class(['-ml-0.5 h-5 w-5', 'text-gray-300' => !$isFavorite, 'text-yellow-400' => $isFavorite]) viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 2c-1.716 0-3.408.106-5.07.31C3.806 2.45 3 3.414 3 4.517V17.25a.75.75 0 001.075.676L10 15.082l5.925 2.844A.75.75 0 0017 17.25V4.517c0-1.103-.806-2.068-1.93-2.207A41.403 41.403 0 0010 2z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $isFavorite ? 'Supprimer des favoris' : 'Ajouter aux favoris' }}
                             </button>
                             <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">45</p>
-                        </form>
+                        </div>
 
                         <button type="button" class="rounded-full bg-primary-600 p-1.5 ml-2 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

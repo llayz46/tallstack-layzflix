@@ -65,10 +65,11 @@ class TmdbApiService
      * @param array $result Les détails de l'élément à normaliser.
      * @return array|null Les détails normalisés ou null si aucun résultat n'est fourni.
      */
-    private function normalizeMediaDetails(Array $result): ?Array
+    private function normalizeMediaDetails(Array $result, String $type): ?Array
     {
         if ($result) {
             $result['normalized_title'] = $result['title'] ?? $result['name'];
+            $result['media_type'] = $type;
 
             unset($result['title'],
                 $result['name'],
@@ -154,6 +155,6 @@ class TmdbApiService
             throw new \Exception('Désolé, nous n\'avons aucun film ou série correspondant', 404);
         }
 
-        return $this->normalizeMediaDetails($request);
+        return $this->normalizeMediaDetails($request, $type);
     }
 }
