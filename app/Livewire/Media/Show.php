@@ -24,6 +24,10 @@ class Show extends Component
 
     public function checkIfFavorite()
     {
+        if (!auth()->check()) {
+            return;
+        }
+
         $this->isFavorite = auth()->user()->favoriteMedias->contains('media_id', $this->media['id']);
     }
 

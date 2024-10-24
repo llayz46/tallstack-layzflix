@@ -16,8 +16,6 @@ class Browse extends Controller
             'query' => $query,
             'results' => $results,
             'totalResults' => $results->total(),
-//            'page' => $results->currentPage(),
-//            'perPage' => $results->perPage(),
         ]);
     }
 }

@@ -1,6 +1,12 @@
 <div>
+    <div class="absolute inset-x-0 overflow-hidden top-0 left-0 -z-10 transform-gpu blur-3xl" aria-hidden="true">
+        <div class="aspect-[500/400] w-[50rem] mr-auto bg-gradient-to-tr from-primary-600/50 to-primary-800/50 opacity-30" style="clip-path:polygon(79.8% 60%, 86.6% 66.2%, 95.2% 75.6%, 100% 61%, 97.4% 28.2%, 85.4% -0.6%, 80.6% 1.4%, 75.6% 9.4%, 78.8% 22.2%, 71.4% 31.8%, 58.8% 39.6%, 60.2% 61.8%, 52.4% 67.4%, 47.4% 57.6%, 45.2% 33.8%, 32.2% 49.2%, 25.6% 68.2%, 0% 64.2%, 17.8% 99.4%, 29.4% 82.8%, 45% 87.2%, 59.2% 84.2%, 76% 97%, 74.8% 66.2%);"></div>
+    </div>
+    <div class="absolute inset-x-0 overflow-hidden top-[90rem] lg:block hidden lg:top-80 -z-10 transform-gpu md:px-36 blur-3xl" aria-hidden="true">
+        <div class="ml-auto aspect-[1155/750] w-[72.1875rem] bg-gradient-to-tr from-primary-600/50 to-primary-800/50 opacity-30" style="clip-path:polygon(79.8% 60%, 86.6% 66.2%, 95.2% 75.6%, 94.4% 49.6%, 80.4% 58.8%, 73% 44%, 66% 47.2%, 59.4% 57.6%, 49% 58%, 35.4% 56.6%, 31.2% 44.6%, 29.6% 33.4%, 26.8% 25.6%, 20% 28.4%, 21.2% 38.2%, 22.8% 46.4%, 14.8% 49.8%, 9.4% 52.8%, 17.2% 55.6%, 12.2% 62.6%, 26.6% 59%, 29.4% 67.8%, 21.6% 79.2%, 20.8% 91.2%, 35.4% 79.2%, 44.6% 90.6%, 59.2% 90.2%, 46.8% 81.4%, 45% 70%, 56% 66.4%, 67.2% 64.2%);"></div>
+    </div>
     <div class="my-8 sm:my-12 mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <x-breadcrumb />
+        <x-breadcrumb :$media :director="$media['directors']" />
     </div>
 
     <div>
@@ -9,7 +15,7 @@
                 <div class="lg:col-span-4 lg:row-end-1">
                     @if($media['poster_path'])
                         <div class="overflow-hidden rounded-lg bg-gray-100">
-                            <img src="https://image.tmdb.org/t/p/original{{ $media['poster_path'] }}" sizes="(max-width: 1300px) 670px" class="object-cover size-full rounded-lg border border-background-accent-hover shadow" loading="lazy" alt="Movie image of : {{ $media['normalized_title'] }}">
+                            <img src="https://image.tmdb.org/t/p/original{{ $media['poster_path'] }}" sizes="(max-width: 1300px) 670px" class="relative z-50 object-cover size-full rounded-lg border border-background-accent-hover shadow" loading="lazy" alt="Movie image of : {{ $media['normalized_title'] }}">
                         </div>
                     @else
                         <div role="status" class="flex items-center justify-center aspect-video h-full w-full bg-background-accent-hover rounded-lg animate-pulse">
@@ -22,7 +28,10 @@
                     @endif
                 </div>
 
-                <div class="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:ml-0 lg:max-w-none">
+                <div class="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:ml-0 lg:max-w-none relative">
+                    <div class="absolute inset-x-0 overflow-hidden bottom-2 lg:hidden -z-10 transform-gpu blur-3xl" aria-hidden="true">
+                        <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary-600/50 to-primary-800/50 opacity-30" style="clip-path:polygon(79.8% 60%, 86.6% 66.2%, 95.2% 75.6%, 94.4% 49.6%, 80.4% 58.8%, 73% 44%, 66% 47.2%, 59.4% 57.6%, 49% 58%, 35.4% 56.6%, 31.2% 44.6%, 29.6% 33.4%, 26.8% 25.6%, 20% 28.4%, 21.2% 38.2%, 22.8% 46.4%, 14.8% 49.8%, 9.4% 52.8%, 17.2% 55.6%, 12.2% 62.6%, 26.6% 59%, 29.4% 67.8%, 21.6% 79.2%, 20.8% 91.2%, 35.4% 79.2%, 44.6% 90.6%, 59.2% 90.2%, 46.8% 81.4%, 45% 70%, 56% 66.4%, 67.2% 64.2%);"></div>
+                    </div>
                     <div class="flex flex-col-reverse">
                         <h1 class="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">{{ $media['normalized_title'] }}</h1>
 
@@ -118,4 +127,7 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
+    @vite('resources/js/tsparticles.js')
 </div>
