@@ -56,71 +56,32 @@
 
             <x-profile-level-badge :level="$user->level"/>
 
-{{--            @if($numberOfMovies)--}}
-            <x-profile-info-badge>54 Films et séries en favoris</x-profile-info-badge>
-{{--                <x-badge tag="span">{{ $numberOfMovies }} Favorite movie/serie(s)</x-badge>--}}
-{{--            @endif--}}
+            @if($mediaFavoritesCount)
+                <x-profile-info-badge>{{ $mediaFavoritesCount }} Films et séries en favoris</x-profile-info-badge>
+            @endif
 
 {{--            @if($numberOfReviews)--}}
             <x-profile-info-badge>33 Critiques publiées</x-profile-info-badge>
 {{--                <x-badge tag="span">{{ $numberOfReviews }} Review(s)</x-badge>--}}
 {{--            @endif--}}
 
-{{--            @if($followers)--}}
-            <x-profile-info-badge>7 Followers</x-profile-info-badge>
-{{--                <x-badge tag="span">{{ $followers }} Follower(s)</x-badge>--}}
-{{--            @endif--}}
+            @if($followers)
+                <x-profile-info-badge>{{ $followers }} Followers</x-profile-info-badge>
+            @endif
         </div>
     </div>
 
     <x-profile-section class="mt-6">
         <x-slot:title>Films et séries préférés</x-slot:title>
-        <x-slot:description>Les 5 derniers films favoris de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
+        <x-slot:description>Les {{ count($mediaFavorites) }} derniers films favoris de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
         <x-slot:button>
             <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
         </x-slot:button>
 
         <div class="grid gap-x-6 gap-y-6 grid-cols-1 md:grid-cols-5">
-            <a href="https://layzflix.llayz.fr/medias/236235-tv-the-gentlemen" class="overflow-hidden rounded-lg bg-background border border-gray-200 dark:border-white/10 shadow group relative" data-turbo="false">
-                <span class="sr-only">Link to The Gentlemen</span>
-                <img src="https://image.tmdb.org/t/p/w500/tw3tzfXaSpmUZIB8ZNqNEGzMBCy.jpg" class="group-hover:opacity-35 transition-opacity h-full w-full" alt="Poster of : The Gentlemen" sizes="(max-width: 1300px) 300px" loading="lazy">
-                <div class="hidden group-hover:block position absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 class="text-lg font-semibold text-title text-center">The Gentlemen</h3>
-                    <p class="mt-1 text-sm text-body">2024-03-07</p>
-                </div>
-            </a>
-            <a href="https://layzflix.llayz.fr/medias/522627-movie-the-gentlemen" class="overflow-hidden rounded-lg bg-background border border-gray-200 dark:border-white/10 shadow group relative" data-turbo="false">
-                <span class="sr-only">Link to The Gentlemen</span>
-                <img src="https://image.tmdb.org/t/p/w500/jtrhTYB7xSrJxR1vusu99nvnZ1g.jpg" class="group-hover:opacity-35 transition-opacity h-full w-full" alt="Poster of : The Gentlemen" sizes="(max-width: 1300px) 300px" loading="lazy">
-                <div class="hidden group-hover:block position absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 class="text-lg font-semibold text-title text-center">The Gentlemen</h3>
-                    <p class="mt-1 text-sm text-body">2020-01-01</p>
-                </div>
-            </a>
-            <a href="https://layzflix.llayz.fr/medias/97951-tv-mayor-of-kingstown" class="overflow-hidden rounded-lg bg-background border border-gray-200 dark:border-white/10 shadow group relative" data-turbo="false">
-                <span class="sr-only">Link to Mayor of Kingstown</span>
-                <img src="https://image.tmdb.org/t/p/w500/bCoVQckqnqVtiAZua0EO17eI2Y1.jpg" class="group-hover:opacity-35 transition-opacity h-full w-full" alt="Poster of : Mayor of Kingstown" sizes="(max-width: 1300px) 300px" loading="lazy">
-                <div class="hidden group-hover:block position absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 class="text-lg font-semibold text-title text-center">Mayor of Kingstown</h3>
-                    <p class="mt-1 text-sm text-body">2021-11-14</p>
-                </div>
-            </a>
-            <a href="https://layzflix.llayz.fr/medias/799583-movie-the-ministry-of-ungentlemanly-warfare" class="overflow-hidden rounded-lg bg-background border border-gray-200 dark:border-white/10 shadow group relative" data-turbo="false">
-                <span class="sr-only">Link to The Ministry of Ungentlemanly Warfare</span>
-                <img src="https://image.tmdb.org/t/p/w500/8aF0iAKH9MJMYAZdi0Slg77RYa2.jpg" class="group-hover:opacity-35 transition-opacity h-full w-full" alt="Poster of : The Ministry of Ungentlemanly Warfare" sizes="(max-width: 1300px) 300px" loading="lazy">
-                <div class="hidden group-hover:block position absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 class="text-lg font-semibold text-title text-center">The Ministry of Ungentlemanly Warfare</h3>
-                    <p class="mt-1 text-sm text-body">2024-04-18</p>
-                </div>
-            </a>
-            <a href="https://layzflix.llayz.fr/medias/106379-tv-fallout" class="overflow-hidden rounded-lg bg-background border border-gray-200 dark:border-white/10 shadow group relative" data-turbo="false">
-                <span class="sr-only">Link to Fallout</span>
-                <img src="https://image.tmdb.org/t/p/w500/AnsSKR9LuK0T9bAOcPVA3PUvyWj.jpg" class="group-hover:opacity-35 transition-opacity h-full w-full" alt="Poster of : Fallout" sizes="(max-width: 1300px) 300px" loading="lazy">
-                <div class="hidden group-hover:block position absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 class="text-lg font-semibold text-title text-center">Fallout</h3>
-                    <p class="mt-1 text-sm text-body">2024-04-10</p>
-                </div>
-            </a>
+            @foreach($mediaFavorites as $media)
+                <x-card.media :$media/>
+            @endforeach
         </div>
     </x-profile-section>
 

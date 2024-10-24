@@ -129,8 +129,10 @@ it('can have a media in favorites', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
-        'title' => 'Test Movie',
+        'normalized_title' => 'Test Movie',
         'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
 
     $user->favoriteMedias()->attach($media->media_id);
@@ -143,14 +145,18 @@ it('can have multiple medias in favorites', function () {
     $media1 = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
-        'title' => 'Test Movie',
+        'normalized_title' => 'Test Movie',
         'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
     $media2 = Media::create([
         'media_id' => 2,
         'media_type' => 'movie',
-        'title' => 'Test Movie 2',
+        'normalized_title' => 'Test Movie 2',
         'overview' => 'Test Movie Overview 2',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
 
     $user->favoriteMedias()->attach($media1->media_id);
@@ -164,8 +170,10 @@ it('can remove a media from favorites', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
-        'title' => 'Test Movie',
+        'normalized_title' => 'Test Movie',
         'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
 
     $user->favoriteMedias()->attach($media->media_id);
@@ -179,14 +187,18 @@ it('can find user favorites medias informations', function () {
     $media1 = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
-        'title' => 'Test Movie',
+        'normalized_title' => 'Test Movie',
         'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
     $media2 = Media::create([
         'media_id' => 2,
         'media_type' => 'movie',
-        'title' => 'Test Movie 2',
+        'normalized_title' => 'Test Movie 2',
         'overview' => 'Test Movie Overview 2',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
 
     $user->favoriteMedias()->attach($media1->media_id);
@@ -205,14 +217,18 @@ it('can find specific user favorite media informations', function () {
     $media1 = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
-        'title' => 'Test Movie',
+        'normalized_title' => 'Test Movie',
         'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
     $media2 = Media::create([
         'media_id' => 2,
         'media_type' => 'movie',
-        'title' => 'Test Movie 2',
+        'normalized_title' => 'Test Movie 2',
         'overview' => 'Test Movie Overview 2',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
     ]);
 
     $user->favoriteMedias()->attach($media1->media_id);

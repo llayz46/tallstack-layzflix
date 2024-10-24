@@ -38,7 +38,7 @@ class Show extends Component
         }
     }
 
-    public function favorite($id, $type, $title, $overview)
+    public function favorite($id, $type, $title, $overview, $posterPath, $releaseDate)
     {
         $user = auth()->user();
 
@@ -47,6 +47,8 @@ class Show extends Component
             'media_type' => $type,
             'normalized_title' => $title,
             'overview' => $overview,
+            'poster_path' => $posterPath,
+            'release_date' => $releaseDate,
         ]);
 
         if ($user->favoriteMedias->contains('media_id', $media->media_id)) {
