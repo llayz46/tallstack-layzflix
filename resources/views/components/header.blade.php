@@ -1,4 +1,4 @@
-<header class="lg:static lg:overflow-y-visible" :class="{ 'fixed inset-0 z-40 overflow-y-auto': headerMobileMenu }">
+<header class="lg:static lg:overflow-y-visible" :class="{ 'fixed inset-0 z-40 overflow-y-auto bg-background-normal': headerMobileMenu }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="relative flex justify-between">
             <div class="flex md:absolute md:inset-y-0 md:left-0 lg:static">
@@ -43,7 +43,7 @@
             </div>
             <div class="flex items-center md:absolute md:inset-y-0 md:right-0 lg:hidden">
                 <!-- Mobile menu button -->
-                <button type="button" @click="headerMobileMenu = !headerMobileMenu" class="relative -mx-2 inline-flex items-center justify-center rounded-md p-2 text-neutral-500 hover:bg-gray-800 hover:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" aria-expanded="false">
+                <button type="button" @click="headerMobileMenu = !headerMobileMenu" class="relative -mx-2 inline-flex items-center justify-center rounded-md p-2 text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500" aria-expanded="false">
                     <span class="absolute -inset-0.5"></span>
                     <span class="sr-only">Open menu</span>
 
@@ -100,29 +100,22 @@
          x-transition:leave="transition ease-in duration-100"
          x-transition:leave-start="translate-y-0 opacity-100"
          x-transition:leave-end="-translate-y-3 opacity-0" x-cloak>
-        <div class="mx-auto max-w-3xl space-y-1 px-2 pb-3 pt-2 sm:px-4">
-            <!-- Current: "bg-gray-100 text-gray-900", Default: "hover:bg-gray-50" -->
-            <a href="#" aria-current="page" class="bg-gray-100 text-gray-900 block rounded-md py-2 px-3 text-base font-medium">Dashboard</a>
-            <a href="#" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium">Calendar</a>
-            <a href="#" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium">Teams</a>
-            <a href="#" class="hover:bg-gray-50 block rounded-md py-2 px-3 text-base font-medium">Directory</a>
-        </div>
-        <div class="border-t border-gray-200 pb-3 pt-4">
+        <div class="border-t border-background-accent-hover pb-3 pt-4">
             <div class="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                    <img class="size-10 rounded-full" src="{{ auth()->user()->getProfilePhoto() }}" alt="Photo de profil de : {{ auth()->user()->username }}">
                 </div>
                 <div class="ml-3">
-                    <div class="text-base font-medium text-gray-800">Chelsea Hagon</div>
-                    <div class="text-sm font-medium text-gray-500">chelsea.hagon@example.com</div>
+                    <div class="text-base font-medium text-gray-300">{{ auth()->user()->username }}</div>
+                    <div class="text-sm font-medium text-neutral-400">{{ auth()->user()->email }}</div>
                 </div>
             </div>
             <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-{{--                <a href="{{ route('profile', Str::slug(auth()->user()->username)) }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Profile</a>--}}
-                <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800">Paramètres</a>
+                <a href="{{ route('profile', Str::slug(auth()->user()->username)) }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300" wire:navigate>Profile</a>
+                <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Paramètres</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-neutral-800 w-full text-left">Déconnexion</button>
+                    <button type="submit" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Déconnexion</button>
                 </form>
             </div>
         </div>

@@ -21,7 +21,7 @@
 
     <div class="flex transform-gpu divide-x divide-border-normal" x-data="{ image: null }">
         <div class="max-h-96 min-w-0 flex-auto scroll-py-4 overflow-y-auto px-6 py-4 sm:h-96 no-scroll-bar">
-            <h2 class="mb-4 mt-2 text-xs font-semibold text-neutral-400">Vous suit :</h2>
+            <h2 class="mb-4 mt-2 text-xs font-semibold text-neutral-400">Vous suivez :</h2>
 
             <ul class="-mx-2 text-sm text-neutral-400" role="list">
                 @foreach($followings as $following)
