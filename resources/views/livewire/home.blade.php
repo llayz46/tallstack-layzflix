@@ -63,9 +63,9 @@
         </x-homepage.section-block-title>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 lg:mt-8">
-            <x-card.review/>
-            <x-card.review/>
-            <x-card.review/>
+            @foreach($reviews as $review)
+                <x-card.review :$review/>
+            @endforeach
         </div>
     </x-homepage.section-wrapper>
 

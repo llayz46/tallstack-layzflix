@@ -77,7 +77,7 @@
                              x-transition:leave-start="transform opacity-100 scale-100"
                              x-transition:leave-end="-transform opacity-0 scale-95" x-cloak>
                             <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="{{ route('profile', Str::slug(auth()->user()->slug)) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Profile</a>
+                            <a href="{{ route('profile', auth()->user()->slug) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Profile</a>
                             <a href="{{ route('settings.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-                <a href="{{ route('profile', Str::slug(auth()->user()->username)) }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300" wire:navigate>Profile</a>
+                <a href="{{ route('profile', auth()->user()->slug) }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300" wire:navigate>Profile</a>
                 <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Paramètres</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
