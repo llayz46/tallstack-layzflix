@@ -4,7 +4,7 @@
             <div class="flex items-start space-x-5">
                 <div class="flex-shrink-0">
                     <div class="relative">
-                        <img class="h-16 w-16 rounded-full object-cover shadow-inner" src="{{ $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. $user->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg' }}" alt="">
+                        <img class="h-16 w-16 rounded-full object-cover shadow-inner" src="{{ $user->getProfilePhoto() }}" alt="">
                         <span class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></span>
                     </div>
                 </div>
