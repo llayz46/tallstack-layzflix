@@ -11,7 +11,7 @@
 
     <div>
         <div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
+            <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16 relative">
                 <div class="lg:col-span-4 lg:row-end-1">
                     @if($media['poster_path'])
                         <div class="overflow-hidden rounded-lg bg-gray-100">
@@ -121,6 +121,10 @@
                             </ul>
                         </div>
                     @endif
+                </div>
+
+                <div class="absolute inset-x-0 overflow-hidden max-md:-bottom-48 md:bottom-0 -z-10 transform-gpu blur-3xl testGROS" aria-hidden="true">
+                    <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary-600/50 to-primary-800/50 opacity-20" style="clip-path:polygon(58.2% 28.2%, 65.6% 17.4%, 79% 10%, 95.4% 24.4%, 98% 35%, 97.4% 47.2%, 90.4% 55.8%, 92.8% 66.8%, 99.4% 78%, 83.2% 77.8%, 77.2% 74%, 74.6% 66.4%, 79.8% 61.2%, 77.4% 55%, 86.4% 46.6%, 72.8% 42%, 58.4% 28.6%, 39.8% 35.8%, 32.4% 42.8%, 47.2% 54.4%, 39.6% 60.2%, 34.2% 68%, 31.8% 81.2%, 26.4% 94.2%, 12% 90%, 4% 79.8%, 4.4% 63.6%, 20% 57.4%, 23.8% 48.6%, 20% 36.2%, 12.8% 25.8%, 18.6% 15.2%, 30.4% 17.6%, 36.8% 27.4%);"></div>
                 </div>
 
                 <livewire:review :$media/>
