@@ -123,7 +123,7 @@
                     @endif
                 </div>
 
-{{--                <livewire:review :$media />--}}
+                <livewire:review :$media/>
             </div>
         </div>
     </div>

@@ -334,3 +334,23 @@ it('can check if an specific user is following', function () {
 
     expect($user->isFollowing($userToFollow))->toBeTrue();
 });
+
+it('can have many reviews', function () {
+    $user = User::factory()->create();
+    $media = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
+        'poster_path' => '/poster',
+        'release_date' => NOW()
+    ]);
+
+    $user->reviews()->create([
+        'rating' => 5,
+        'content' => 'Test review',
+        'media_id' => $media->id,
+    ]);
+
+    expect($user->reviews->count())->toBe(1);
+});

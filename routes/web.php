@@ -15,14 +15,6 @@ Route::get('/browse', Browse::class)->name('browse');
 
 Route::get('/show/{id}-{type}-{slug}', Show::class)->name('show');
 
-Route::get('/testTV', function () {
-    TmdbApiService::show(236235, 'tv');
-});
-
-Route::get('/testMOVIE', function () {
-    TmdbApiService::show(522627, 'movie');
-});
-
 //Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 //    Route::get('/dashboard', function () {
 //        return view('dashboard');
