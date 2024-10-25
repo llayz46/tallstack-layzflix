@@ -26,7 +26,7 @@
                     @endif
 
                     @if($user->id === auth()->user()->id)
-                        <x-button type="link" href="{{ route('settings.show') }}" wire:navigate>Modifier profile</x-button>
+                        <x-button type="link" href="{{ route('settings.show') }}" class="justify-center" wire:navigate>Modifier profile</x-button>
 
                         <x-button type="secondary-button" @click="followingsModal = true">Suivis</x-button>
 
@@ -60,10 +60,9 @@
                 <x-profile-info-badge>{{ $mediaFavoritesCount }} Films et séries en favoris</x-profile-info-badge>
             @endif
 
-{{--            @if($numberOfReviews)--}}
-            <x-profile-info-badge>33 Critiques publiées</x-profile-info-badge>
-{{--                <x-badge tag="span">{{ $numberOfReviews }} Review(s)</x-badge>--}}
-{{--            @endif--}}
+            @if($reviewsCount)
+                <x-profile-info-badge>{{ $reviewsCount }} Critiques publiées</x-profile-info-badge>
+            @endif
 
             @if($followers)
                 <x-profile-info-badge>{{ $followers }} Followers</x-profile-info-badge>
@@ -78,7 +77,7 @@
             <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
         </x-slot:button>
 
-        <div class="grid gap-x-6 gap-y-6 grid-cols-1 md:grid-cols-5">
+        <div class="grid gap-x-6 gap-y-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
             @foreach($mediaFavorites as $media)
                 <x-card.media :$media/>
             @endforeach
@@ -91,5 +90,11 @@
         <x-slot:button>
             <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
         </x-slot:button>
+
+        <div class="grid gap-x-6 gap-y-6 grid-cols-1 lg:grid-cols-2">
+            @foreach($reviews as $review)
+                <x-card.review class="pb-5 border-b border-background-accent-hover max-[315px]:flex-col" :profile="true" :$review/>
+            @endforeach
+        </div>
     </x-profile-section>
 </div>

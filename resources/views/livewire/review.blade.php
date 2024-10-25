@@ -10,9 +10,9 @@
                 @if($reviews)
                     @foreach($reviews as $review)
                         <div @class(['flex space-x-4 text-sm text-neutral-400 w-full mb-10', 'border-b border-background-accent-hover' => !$loop->last]) wire:key="{{ $review->id }}">
-                            <div class="block w-fit min-w-10">
-                                <img src="{{ $review['user']->getProfilePhoto() }}" alt="Avatar de : {{ $review['user']['username'] }}" class="inline-block size-10 rounded-full">
-                            </div>
+                            <a href="{{ route('profile', $review['user']['slug']) }}" class="block w-fit min-w-10 group">
+                                <img src="{{ $review['user']->getProfilePhoto() }}" alt="Avatar de : {{ $review['user']['username'] }}" class="inline-block size-10 rounded-full group-hover:scale-105 transition">
+                            </a>
                             <div class="block pb-10">
                                 <h3 class="font-medium text-gray-300">{{ $review['user']['username'] }}</h3>
                                 <p><time datetime="{{ $review['created_at'] }}">{{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('j') }} {{ ucfirst(Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('F')) }} {{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('Y') }}</time></p>

@@ -76,6 +76,8 @@ class Review extends Component
         auth()->user()->reviews()->where('id', $review['id'])->delete();
 
         $this->banner('La critique a été supprimé avec succès.');
+
+        $this->reset('rating', 'content');
     }
 
     private function loadReview(array $media)
