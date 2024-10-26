@@ -170,27 +170,6 @@
         </div>
     </x-homepage.section-wrapper>
 
-{{--        <div class="mx-auto max-w-2xl sm:text-center">--}}
-{{--            <h2 class="text-base font-semibold leading-7 text-primary-600">Engagement des utilisateurs</h2>--}}
-{{--            <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Nos membres les plus actifs</p>--}}
-{{--            <p class="mt-6 text-lg leading-8 text-gray-300">Découvrez les coups de cœur de nos utilisateurs ! Plongez dans une sélection qui met en lumière les films et séries les plus appréciés par notre communauté !</p>--}}
-{{--        </div>--}}
-
-{{--        <div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">--}}
-{{--            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">--}}
-{{--                <div class="relative pl-6 border-l" style="border-image:linear-gradient(#d5294d, #07070e) 1 100% / 1 / 0 stretch;">--}}
-{{--                    <div class="font-semibold text-white">--}}
-{{--                        Payments--}}
-{{--                    </div>--}}
-{{--                    <div>--}}
-{{--                        All payments are handled by--}}
-{{--                        <a class="underline" href="https://stripe.com" target="_blank">Stripe</a>--}}
-{{--                        . Subscription, one-time payments, and more are ready to use.--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js"></script>
     @vite('resources/js/tsparticles.js')
 </div>

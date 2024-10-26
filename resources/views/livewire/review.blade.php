@@ -5,52 +5,54 @@
                 <p class="border-transparent text-gray-300 whitespace-nowrap border-b-2 py-6 text-sm font-medium">Critiques</p>
             </div>
 
-            <div class="-mb-10">
-                <h3 class="sr-only">Reviews</h3>
-                @if($reviews)
-                    @foreach($reviews as $review)
-                        <div @class(['flex space-x-4 text-sm text-neutral-400 w-full mb-10', 'border-b border-background-accent-hover' => !$loop->last]) wire:key="{{ $review->id }}">
-                            <a href="{{ route('profile', $review['user']['slug']) }}" class="block w-fit min-w-10 group">
-                                <img src="{{ $review['user']->getProfilePhoto() }}" alt="Avatar de : {{ $review['user']['username'] }}" class="inline-block size-10 rounded-full group-hover:scale-105 transition">
-                            </a>
-                            <div class="block pb-10">
-                                <h3 class="font-medium text-gray-300">{{ $review['user']['username'] }}</h3>
-                                <p><time datetime="{{ $review['created_at'] }}">{{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('j') }} {{ ucfirst(Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('F')) }} {{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('Y') }}</time></p>
+            @if($reviews)
+                <div class="-mb-10">
+                    <h3 class="sr-only">Reviews</h3>
+                    @if($reviews)
+                        @foreach($reviews as $review)
+                            <div @class(['flex space-x-4 text-sm text-neutral-400 w-full mb-10', 'border-b border-background-accent-hover' => !$loop->last]) wire:key="{{ $review->id }}">
+                                <a href="{{ route('profile', $review['user']['slug']) }}" class="block w-fit min-w-10 group">
+                                    <img src="{{ $review['user']->getProfilePhoto() }}" alt="Avatar de : {{ $review['user']['username'] }}" class="inline-block size-10 rounded-full group-hover:scale-105 transition">
+                                </a>
+                                <div class="block pb-10">
+                                    <h3 class="font-medium text-gray-300">{{ $review['user']['username'] }}</h3>
+                                    <p><time datetime="{{ $review['created_at'] }}">{{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('j') }} {{ ucfirst(Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('F')) }} {{ Illuminate\Support\Carbon::createFromDate($review['created_at'])->translatedFormat('Y') }}</time></p>
 
-                                <div class="mt-2 flex items-center">
-                                    @for($i = 0; $i < $review['rating']; $i++)
-                                        <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                        </svg>
-                                    @endfor
-                                    @for($i = $review['rating']; $i < 5; $i++)
-                                        <svg class="text-neutral-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                                        </svg>
-                                    @endfor
+                                    <div class="mt-2 flex items-center">
+                                        @for($i = 0; $i < $review['rating']; $i++)
+                                            <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                            </svg>
+                                        @endfor
+                                        @for($i = $review['rating']; $i < 5; $i++)
+                                            <svg class="text-neutral-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                                            </svg>
+                                        @endfor
+                                    </div>
+
+                                    <div class="prose prose-sm mt-2 max-w-none text-neutral-400">
+                                        <p>{{ Str::ucfirst($review['content']) }}</p>
+                                    </div>
+
+                                    @auth
+                                        @if($review->user_id === auth()->user()->id)
+                                            <form wire:submit="delete({{ $review }})" class="mt-2">
+                                                <x-button>Supprimer</x-button>
+                                            </form>
+                                        @endif
+                                    @endauth
                                 </div>
-
-                                <div class="prose prose-sm mt-2 max-w-none text-neutral-400">
-                                    <p>{{ Str::ucfirst($review['content']) }}</p>
-                                </div>
-
-                                @auth
-                                    @if($review->user_id === auth()->user()->id)
-                                        <form wire:submit="delete({{ $review }})" class="mt-2">
-                                            <x-button>Supprimer</x-button>
-                                        </form>
-                                    @endif
-                                @endauth
                             </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-
-            @if($reviews->hasPages())
-                <div class="border-t border-background-accent-hover py-5 mt-10">
-                    {{ $reviews->links() }}
+                        @endforeach
+                    @endif
                 </div>
+
+                @if($reviews->hasPages())
+                    <div class="border-t border-background-accent-hover py-5 mt-10">
+                        {{ $reviews->links() }}
+                    </div>
+                @endif
             @endif
         </div>
     </div>

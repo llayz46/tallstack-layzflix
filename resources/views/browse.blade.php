@@ -6,7 +6,7 @@
 
                 <div class="mt-2 border-t border-background-accent-hover pt-5">
                     @if($results->items())
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-5 max-md:gap-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6 lg:grid-cols-5 max-md:gap-y-8 @if($results->total() < 20) mb-10 @endif">
                             @foreach($results as $result)
                                 <x-card.media :media="$result"/>
                             @endforeach
