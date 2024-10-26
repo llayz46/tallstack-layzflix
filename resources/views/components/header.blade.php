@@ -76,9 +76,8 @@
                              x-transition:leave="transition ease-in duration-75"
                              x-transition:leave-start="transform opacity-100 scale-100"
                              x-transition:leave-end="-transform opacity-0 scale-95" x-cloak>
-                            <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="{{ route('profile', auth()->user()->slug) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Profile</a>
-                            <a href="{{ route('settings.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" tabindex="-1" wire:navigate>Paramètres</a>
+                            <a href="{{ route('profile', auth()->user()->slug) }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" wire:navigate>Profile</a>
+                            <a href="{{ route('settings.show') }}" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover" role="menuitem" wire:navigate>Paramètres</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="block px-4 py-2 text-sm text-gray-300 hover:bg-background-accent-hover w-full text-left">Déconnexion</button>
@@ -101,22 +100,29 @@
          x-transition:leave-start="translate-y-0 opacity-100"
          x-transition:leave-end="-translate-y-3 opacity-0" x-cloak>
         <div class="border-t border-background-accent-hover pb-3 pt-4">
-            <div class="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
-                <div class="flex-shrink-0">
-                    <img class="size-10 rounded-full" src="{{ auth()->user()->getProfilePhoto() }}" alt="Photo de profil de : {{ auth()->user()->username }}">
+            @auth
+                <div class="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
+                    <div class="flex-shrink-0">
+                        <img class="size-10 rounded-full" src="{{ auth()->user()->getProfilePhoto() }}" alt="Photo de profil de : {{ auth()->user()->username }}">
+                    </div>
+                    <div class="ml-3">
+                        <div class="text-base font-medium text-gray-300">{{ auth()->user()->username }}</div>
+                        <div class="text-sm font-medium text-neutral-400">{{ auth()->user()->email }}</div>
+                    </div>
                 </div>
-                <div class="ml-3">
-                    <div class="text-base font-medium text-gray-300">{{ auth()->user()->username }}</div>
-                    <div class="text-sm font-medium text-neutral-400">{{ auth()->user()->email }}</div>
-                </div>
-            </div>
+            @endauth
             <div class="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-                <a href="{{ route('profile', auth()->user()->slug) }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300" wire:navigate>Profile</a>
-                <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Paramètres</a>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Déconnexion</button>
-                </form>
+                @auth
+                    <a href="{{ route('profile', auth()->user()->slug) }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300" wire:navigate>Profile</a>
+                    <a href="{{ route('settings.show') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Paramètres</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Déconnexion</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Connexion</a>
+                    <a href="{{ route('register') }}" class="block rounded-md px-3 py-2 text-base font-medium text-neutral-400 hover:bg-background-accent-hover hover:text-gray-300">Inscription</a>
+                @endauth
             </div>
         </div>
     </nav>

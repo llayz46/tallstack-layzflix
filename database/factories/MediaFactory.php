@@ -19,6 +19,10 @@ class MediaFactory extends Factory
         return [
             'media_id' => $this->faker->randomNumber(),
             'media_type' => $this->faker->randomElement(['tv', 'movie']),
+            'normalized_title' => $this->faker->sentence(),
+            'overview' => $this->faker->sentences(3, true),
+            'poster_path' => $this->faker->imageUrl(),
+            'release_date' => $this->faker->date(),
         ];
     }
 }

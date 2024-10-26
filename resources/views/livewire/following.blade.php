@@ -28,7 +28,7 @@
                     <li class="group flex cursor-default select-none items-center rounded-md p-2"
                         :class="selectedUser?.id === {{ $following->id }} ? 'text-gray-300 bg-background-accent-hover' : 'hover:text-gray-300 hover:bg-background-accent-hover'"
                         role="option" tabindex="-1" wire:key="{{ $following->id }}"
-                        @click="selectUser({ id: {{ $following->id }}, username: '{{ $following->username }}', biography: '{{ $following->biography }}', profile_photo_path: '{{ $following->getProfilePhoto() }}', slug: '{{ $following->slug }}' })">
+                        @click="selectUser({ id: {{ $following->id }}, username: '{{ $following->username }}', biography: '{{ $following->biography }}', profile_photo_path: '{{ $following->getProfilePhoto() }}', slug: '{{ $following->slug }}', level: '{{ $following->level }}', reviews: '{{ $following->reviews->count() }}' })">
                         <img src="{{ $following->getProfilePhoto() }}" alt="Photo de profil de : {{ $following->username }}" class="h-6 w-6 flex-none rounded-full object-cover">
                         <span class="ml-3 flex-auto truncate">{{ $following->username }}</span>
                         <svg class="ml-3 h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20"
@@ -58,7 +58,7 @@
                             <dt class="col-end-1 font-semibold text-gray-300">Niveau</dt>
                             <dd x-text="selectedUser.level"></dd>
                             <dt class="col-end-1 font-semibold text-gray-300">Critiques</dt>
-                            <dd>14</dd>
+                            <dd x-text="selectedUser.reviews"></dd>
                             <dt>
                                 <a :href="`/${selectedUser.slug}/profile`" class="text-primary-600 hover:underline">Voir le profil</a>
                             </dt>

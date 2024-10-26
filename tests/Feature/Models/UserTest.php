@@ -135,9 +135,9 @@ it('can have a media in favorites', function () {
         'release_date' => NOW()
     ]);
 
-    $user->favoriteMedias()->attach($media->media_id);
+    $user->favoriteMedias()->attach($media->id);
 
-    expect($user->favoriteMedias->first()->media_id)->toBe($media->media_id);
+    expect($user->favoriteMedias->first()->id)->toBe($media->id);
 });
 
 it('can have multiple medias in favorites', function () {
@@ -159,8 +159,8 @@ it('can have multiple medias in favorites', function () {
         'release_date' => NOW()
     ]);
 
-    $user->favoriteMedias()->attach($media1->media_id);
-    $user->favoriteMedias()->attach($media2->media_id);
+    $user->favoriteMedias()->attach($media1->id);
+    $user->favoriteMedias()->attach($media2->id);
 
     expect($user->favoriteMedias->count())->toBe(2);
 });
@@ -176,8 +176,8 @@ it('can remove a media from favorites', function () {
         'release_date' => NOW()
     ]);
 
-    $user->favoriteMedias()->attach($media->media_id);
-    $user->favoriteMedias()->detach($media->media_id);
+    $user->favoriteMedias()->attach($media->id);
+    $user->favoriteMedias()->detach($media->id);
 
     expect($user->favoriteMedias->count())->toBe(0);
 });
@@ -201,14 +201,14 @@ it('can find user favorites medias informations', function () {
         'release_date' => NOW()
     ]);
 
-    $user->favoriteMedias()->attach($media1->media_id);
-    $user->favoriteMedias()->attach($media2->media_id);
+    $user->favoriteMedias()->attach($media1->id);
+    $user->favoriteMedias()->attach($media2->id);
 
     $favorites = $user->favoriteMedias;
 
-    expect($favorites->first()->media_id)->toBe($media1->media_id)
+    expect($favorites->first()->id)->toBe($media1->id)
         ->and($favorites->first()->media_type)->toBe($media1->media_type)
-        ->and($favorites->last()->media_id)->toBe($media2->media_id)
+        ->and($favorites->last()->id)->toBe($media2->id)
         ->and($favorites->last()->media_type)->toBe($media2->media_type);
 });
 
@@ -231,14 +231,14 @@ it('can find specific user favorite media informations', function () {
         'release_date' => NOW()
     ]);
 
-    $user->favoriteMedias()->attach($media1->media_id);
-    $user->favoriteMedias()->attach($media2->media_id);
+    $user->favoriteMedias()->attach($media1->id);
+    $user->favoriteMedias()->attach($media2->id);
 
     $favorites = $user->favoriteMedias;
 
-    $favoriteMedia = $favorites->where('media_id', 1)->first();
+    $favoriteMedia = $favorites->where('id', 1)->first();
 
-    expect($favoriteMedia->media_id)->toBe($media1->media_id)
+    expect($favoriteMedia->id)->toBe($media1->id)
         ->and($favoriteMedia->media_type)->toBe($media1->media_type);
 });
 
