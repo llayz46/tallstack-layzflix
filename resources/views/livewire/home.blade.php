@@ -112,7 +112,6 @@
                 interactions régulières. Rejoignez-les et partagez votre passion !</x-slot:description>
         </x-homepage.section-block-title>
 
-{{--        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 mt-6 lg:mt-8">--}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between gap-8 mt-6 lg:mt-8">
             @foreach($users as $user)
                 <x-card.user-active :$user/>
