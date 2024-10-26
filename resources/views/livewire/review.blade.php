@@ -64,11 +64,17 @@
                 <div class="min-w-0 flex-1">
                     <form wire:submit.prevent="submit">
                         <div class="relative">
-                            <div class="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-background-accent-hover backdrop-blur-[2px] bg-background-accent-hover/25 focus-within:ring-2 focus-within:ring-primary-600">
+                            <div class="rounded-lg shadow-sm ring-1 ring-inset ring-background-accent-hover backdrop-blur-[2px] bg-background-accent-hover/25 focus-within:ring-2 focus-within:ring-primary-600">
                                 <label for="comment" class="sr-only">Add your comment</label>
-                                <textarea rows="4" wire:model="content" name="comment" id="comment"
-                                          class="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-300 placeholder:text-neutral-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                          placeholder="Partagez votre avis..."></textarea>
+                                <textarea x-data="{
+                                        resize () {
+                                            $el.style.height = '0px';
+                                            $el.style.height = $el.scrollHeight + 'px'
+                                        }
+                                    }" x-init="resize()" @input="resize()" type="text"
+                                    wire:model="content" name="comment" id="comment"
+                                    class="flex w-full h-auto min-h-28 px-3 pt-1.5 pb-14 border-0 bg-transparent text-gray-300 placeholder:text-neutral-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                    placeholder="Partagez votre avis..."></textarea>
                             </div>
 
                             <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 px-2">
