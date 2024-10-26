@@ -114,9 +114,9 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-4 mt-6 lg:mt-8">
 {{--            TODO: a voir le responsive --}}
-            <x-card.user-active/>
-            <x-card.user-active/>
-            <x-card.user-active/>
+            @foreach($users as $user)
+                <x-card.user-active/>
+            @endforeach
         </div>
     </x-homepage.section-wrapper>
 
