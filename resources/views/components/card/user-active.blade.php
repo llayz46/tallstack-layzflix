@@ -7,6 +7,6 @@
     <div class="text-neutral-400 space-y-0.5">
         <p class="font-semibold text-gray-300">{{ $user->username }}</p>
         <p>{{ $user->biography }}</p>
-        <p>{{ $user->total_reviews }} avis postés</p>
+        <p><strong class="font-medium">{{ $user->total_reviews }}</strong> avis postés</p>
     </div>
 </div>
