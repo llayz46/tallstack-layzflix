@@ -23,8 +23,11 @@ class Home extends Component
 
         $topRatedMedia = collect();
 
-        foreach ($topRatedMediaFromReview as $media) {
-            $topRatedMedia->push(Media::where('id', $media->media_id)->first());
+        foreach ($topRatedMediaFromReview as $index => $media) {
+            $mediaToPush = Media::where('id', $media->media_id)->first();
+            $mediaToPush['rank'] = $index + 1;
+
+            $topRatedMedia->push($mediaToPush);
         }
 
         return view('livewire.home', [
