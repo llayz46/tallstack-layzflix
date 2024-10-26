@@ -47,11 +47,11 @@
                 @endif
             </div>
 
-{{--            @if($reviews->hasPages())--}}
-{{--                <div class="border-t border-gray-200 dark:border-white/10 py-5 mt-10">--}}
-{{--                    {{ $reviews->links() }}--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            @if($reviews->hasPages())
+                <div class="border-t border-background-accent-hover py-5 mt-10">
+                    {{ $reviews->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
@@ -113,15 +113,12 @@
                 </div>
             </div>
         @endauth
-{{--        @guest--}}
-{{--            <div class="flex justify-center mt-16 lg:mt-0">--}}
-{{--                <div class="w-fit relative rounded-full px-3 py-1 text-sm leading-6 text-body ring-1 ring-gray-200 dark:ring-white/10 group">--}}
-{{--                    You must be logged in to add a comment. <a href="{{ route('login') }}" class="font-semibold text-primary-500 group-hover:text-primary-400"><span class="absolute inset-0" aria-hidden="true"></span>Please sign in <span aria-hidden="true">&rarr;</span></a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endguest--}}
+        @guest
+            <div class="flex justify-center mt-16 lg:mt-0">
+                <div class="w-fit relative rounded-full px-3 py-1 text-sm leading-6 text-body ring-1 ring-gray-200 dark:ring-white/10 group">
+                    Vous devez être connecté pour laisser votre avis. <a href="{{ route('login') }}" class="font-semibold text-primary-600 group-hover:text-primary-500"><span class="absolute inset-0" aria-hidden="true"></span>Se connecter <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </div>
+        @endguest
     </div>
-{{--    @if(session('reviewSuccess') || session('reviewError'))--}}
-{{--        <x-notification status="{{ session('reviewSuccess') ? 'reviewSuccess' : 'reviewError' }}" title="{{ session('reviewSuccess') ? 'success' : 'error' }}"/>--}}
-{{--    @endif--}}
 </div>

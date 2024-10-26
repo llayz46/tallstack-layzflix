@@ -38,7 +38,7 @@ class Home extends Component
 
         $topUsers = collect();
 
-        foreach ($topUsersFromReviews as $index => $user) {
+        foreach ($topUsersFromReviews as $user) {
             $userToPush = $user->user;
             $userToPush['total_reviews'] = $user->total_reviews;
 
