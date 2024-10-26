@@ -278,12 +278,21 @@ it('can check if user is premium', function () {
     expect($user->isPremium())->toBeTrue();
 });
 
-it('can have a level', function () {
+it('can have xp', function () {
     $user = User::factory()->create([
-        'level' => 5,
+        'xp' => 1050,
     ]);
 
-    expect($user->level)->toBe(5);
+    expect($user->xp)->toBe(1050);
+});
+
+it('can have a level', function () {
+    $user = User::factory()->create([
+        'xp' => 1050,
+        'level' => 9,
+    ]);
+
+    expect($user->level)->toBe(9);
 });
 
 it('can follow another user', function () {

@@ -60,7 +60,9 @@ class Review extends Component
             'media_id' => $media->id,
         ]);
 
-        $this->banner('Votre critique a bien été sauvegardée.');
+        auth()->user()->addXp(30);
+
+        $this->banner('Votre critique a bien été postée.');
     }
 
     public function delete(array $review)
@@ -75,7 +77,7 @@ class Review extends Component
 
         auth()->user()->reviews()->where('id', $review['id'])->delete();
 
-        $this->banner('La critique a été supprimé avec succès.');
+        $this->banner('Votre critique a été supprimé avec succès.');
 
         $this->reset('rating', 'content');
     }

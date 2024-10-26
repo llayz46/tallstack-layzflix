@@ -55,6 +55,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    protected array $levels = [
+        1 => 0,
+        2 => 50,
+        3 => 120,
+        4 => 200,
+        5 => 300,
+        6 => 450,
+        7 => 600,
+        8 => 800,
+        9 => 1050,
+        10 => 1350,
+        11 => 1700,
+        12 => 2100,
+        13 => 2550,
+        14 => 3050,
+        15 => 3600,
+        16 => 4200,
+        17 => 5000,
+    ];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -106,5 +126,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getProfilePhoto(): string
     {
         return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : 'https://ui-avatars.com/api/?background=ebf4ff&name='. $this->username .'&color=d5294d&font-size=0.5&semibold=true&format=svg';
+    }
+
+    public function addXp(int $amount): void
+    {
+        $this->xp += $amount;
+
+        $this->levelUp();
+
+        $this->save();
+    }
+
+    protected function levelUp(): void
+        {
+        foreach ($this->levels as $level => $xpRequired) {
+            if ($this->xp >= $xpRequired) {
+                $this->level = $level;
+            }
+        }
     }
 }

@@ -18,16 +18,22 @@ class DatabaseSeeder extends Seeder
             'username' => 'Test User',
             'slug' => 'test-user',
             'email' => 'test@test.fr',
+            'profile_photo_path' => null,
             'password' => bcrypt('test'),
             'premium' => false,
+            'xp' => 600,
+            'level' => 7,
         ]);
 
         $johnDoe = User::factory()->create([
             'username' => 'John Doe',
             'slug' => 'john-doe',
             'email' => 'john@doe.fr',
+            'profile_photo_path' => null,
             'password' => bcrypt('test'),
             'premium' => true,
+            'xp' => 800,
+            'level' => 8,
         ]);
 
         User::factory(100)->create();

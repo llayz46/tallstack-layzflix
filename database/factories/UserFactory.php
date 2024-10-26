@@ -33,6 +33,7 @@ class UserFactory extends Factory
             'biography' => fake()->sentence(),
             'email_verified_at' => now(),
             'premium' => fake()->boolean(),
+            'xp' => fake()->numberBetween(0, 5000),
             'level' => fake()->numberBetween(1, 17),
             'password' => static::$password ??= Hash::make('Password1.'),
             'two_factor_secret' => fake()->sha1(),

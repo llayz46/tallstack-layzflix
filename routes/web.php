@@ -1,6 +1,5 @@
 <?php
 
-use App\Facades\TmdbApiService;
 use App\Http\Controllers\Browse;
 use App\Livewire\Home;
 use App\Livewire\Media\Show;
