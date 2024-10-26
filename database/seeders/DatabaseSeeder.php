@@ -95,6 +95,11 @@ class DatabaseSeeder extends Seeder
             'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
             'media_id' => $theGentlemenMOVIE->id,
         ]);
+        $johnDoe->reviews()->create([
+            'rating' => 5,
+            'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
+            'media_id' => $theGentlemenMOVIE->id,
+        ]);
         $testUser->reviews()->create([
             'rating' => 4,
             'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
@@ -104,11 +109,6 @@ class DatabaseSeeder extends Seeder
         $johnDoe->favoriteMedias()->attach($theGentlemenTV->id);
         $johnDoe->favoriteMedias()->attach($theGentlemenMOVIE->id);
         $johnDoe->favoriteMedias()->attach($codeUncle->id);
-        $johnDoe->reviews()->create([
-            'rating' => 5,
-            'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
-            'media_id' => $theGentlemenMOVIE->id,
-        ]);
         $johnDoe->reviews()->create([
             'rating' => 4,
             'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
