@@ -36,6 +36,17 @@ class DatabaseSeeder extends Seeder
             'level' => 8,
         ]);
 
+        $lastUser = User::factory()->create([
+            'username' => 'Another User',
+            'slug' => 'another-user',
+            'email' => 'another@user.fr',
+            'profile_photo_path' => null,
+            'password' => bcrypt('test'),
+            'premium' => true,
+            'xp' => 1500,
+            'level' => 10,
+        ]);
+
         User::factory(100)->create();
 
         $testUser->followers()->attach(2);
@@ -47,6 +58,11 @@ class DatabaseSeeder extends Seeder
         $johnDoe->followers()->attach(range(31, 61));
         $johnDoe->following()->attach(1);
         $johnDoe->following()->attach(range(77, 94));
+
+        $lastUser->followers()->attach(1);
+        $lastUser->followers()->attach(range(80, 99));
+        $lastUser->following()->attach(1);
+        $lastUser->following()->attach(range(84, 92));
 
         $theGentlemenTV = Media::factory()->create([
             'media_id' => 236235,
@@ -95,6 +111,11 @@ class DatabaseSeeder extends Seeder
             'rating' => 1,
             'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
             'media_id' => $testMedia->id,
+        ]);
+        $lastUser->reviews()->create([
+            'rating' => 3,
+            'content' => 'Lorem ipsum dolor sit amet labore et sed praesent duo et. Justo esse dolor nulla diam diam dolor iusto lorem est et lobortis gubergren diam in eos. Praesent vero esse tempor dolor autem vero lorem. Et wisi amet rebum et sit est. Stet volutpat dolor est. Amet nulla et voluptua tempor ea hendrerit vel elitr gubergren et diam nonumy sit sadipscing. Duo dolor duo eros lobortis at.',
+            'media_id' => $theGentlemenTV->id,
         ]);
         $testUser->reviews()->create([
             'rating' => 5,

@@ -30,11 +30,20 @@ class Home extends Component
             $topRatedMedia->push($mediaToPush);
         }
 
-        $topUsers = Review::groupBy('user_id')
+        $topUsersFromReviews = Review::groupBy('user_id')
             ->select('user_id', DB::raw('COUNT(*) as total_reviews'))
             ->orderByDesc('total_reviews')
             ->with('user')
             ->get()->take(3);
+
+        $topUsers = collect();
+
+        foreach ($topUsersFromReviews as $index => $user) {
+            $userToPush = $user->user;
+            $userToPush['total_reviews'] = $user->total_reviews;
+
+            $topUsers->push($userToPush);
+        }
 
         return view('livewire.home', [
             'reviews' => Review::with('user')->latest()->take(3)->get(),
