@@ -1,6 +1,6 @@
 @props(['user'])
 
-<div class="flex sm:justify-center gap-4">
+<div class="flex sm:justify-center w-full gap-4">
     <a href="{{ route('profile', $user->slug) }}">
         <img class="hover:scale-105 object-cover transition min-w-20 min-h-20 size-20 rounded-full border border-background-accent" src="{{ $user->getProfilePhoto() }}" alt="Image de profile">
     </a>
