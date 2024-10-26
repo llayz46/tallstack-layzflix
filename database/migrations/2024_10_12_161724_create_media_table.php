@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('media_id');
             $table->string('media_type');
             $table->string('normalized_title');
-            $table->string('overview')->nullable();
+            $table->text('overview')->nullable();
             $table->string('poster_path')->nullable();
             $table->date('release_date')->nullable();
             $table->timestamps();
