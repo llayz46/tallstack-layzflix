@@ -17,7 +17,7 @@
                         <svg class="h-5 w-5 flex-shrink-0 text-neutral-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
                         </svg>
-                        <a class="ml-4 text-sm font-medium text-neutral-300 hover:text-primary-400 transition-colors" href="#">{{ $dir['name'] }}</a>
+                        <a class="ml-4 text-sm font-medium text-neutral-300 hover:text-primary-400 transition-colors" href="{{ route('directors', [$dir['id'], Str::slug($dir['name'])]) }}">{{ $dir['name'] }}</a>
                     </div>
                 </li>
             @endforeach

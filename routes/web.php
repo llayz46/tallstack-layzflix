@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Browse;
+use App\Http\Controllers\BrowseController;
 use App\Livewire\Home;
 use App\Livewire\Media\Show;
 use App\Livewire\Profile;
@@ -10,7 +10,9 @@ Route::get('/', Home::class)->name('home');
 
 Route::get('/{user:slug}/profile', Profile::class)->name('profile');
 
-Route::get('/browse', Browse::class)->name('browse');
+Route::get('/browse', [BrowseController::class, 'search'])->name('browse');
+
+Route::get('/browse/directors/{id}-{slug}', [BrowseController::class, 'person'])->name('directors');
 
 Route::get('/show/{id}-{type}-{slug}', Show::class)->name('show');
 

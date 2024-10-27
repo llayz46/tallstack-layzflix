@@ -25,11 +25,15 @@ class TmdbApiService
      * @param \Illuminate\Support\Collection|Collection $results Les résultats de la recherche à normaliser.
      * @return \Illuminate\Support\Collection|Collection Les résultats normalisés ou un message d'erreur.
      */
-    private function normalizeBrowseResults(\Illuminate\Support\Collection|Collection $results): \Illuminate\Support\Collection|Collection
+    private function normalizeBrowseResults(\Illuminate\Support\Collection|Collection $results, bool $person = false): \Illuminate\Support\Collection|Collection
     {
         if ($results->isNotEmpty()) {
-            return $results->filter(function ($result) {
-                    return in_array($result['media_type'], ['movie', 'tv']);
+            return $results->filter(function ($result) use ($person) {
+                    if ($person) {
+                        return in_array($result['media_type'], ['movie', 'tv']) && $result['job'] === 'Director';
+                    } else {
+                        return in_array($result['media_type'], ['movie', 'tv']);
+                    }
                 })
                 ->transform(function ($result) {
                     $result['normalized_title'] = $result['title'] ?? $result['name'];
@@ -156,5 +160,19 @@ class TmdbApiService
         }
 
         return $this->normalizeMediaDetails($request, $type);
+    }
+
+    public function person(int $id)
+    {
+        $results = collect();
+
+        $request = Http::get($this->baseUrl . 'person/' . $id . '/combined_credits', [
+            'api_key' => $this->apiKey,
+            'language' => 'fr-FR',
+        ])->json();
+
+        $results = $results->merge($request['crew']);
+
+        return $this->normalizeBrowseResults($results, true);
     }
 }
