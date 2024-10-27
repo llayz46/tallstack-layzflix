@@ -42,10 +42,14 @@ it('can add medias to playlist', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
     $media2 = Media::create([
-        'media_id' => 10,
+        'media_id' => 1,
         'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
 
     $playlist->medias()->attach($media->id);
@@ -60,6 +64,8 @@ it('can remove media from playlist', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
 
     $playlist->medias()->attach($media->id);
@@ -73,10 +79,14 @@ it('can find playlist medias informations', function () {
     $media = Media::create([
         'media_id' => 1,
         'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
     $media2 = Media::create([
-        'media_id' => 10,
+        'media_id' => 1,
         'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
     ]);
 
     $playlist->medias()->attach($media->id);

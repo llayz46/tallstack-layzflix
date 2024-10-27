@@ -30,7 +30,7 @@ class TmdbApiService
         if ($results->isNotEmpty()) {
             return $results->filter(function ($result) use ($person) {
                     if ($person) {
-                        return in_array($result['media_type'], ['movie', 'tv']) && $result['job'] === 'Director';
+                        return in_array($result['media_type'], ['movie', 'tv']) && in_array($result['job'], ['Director', 'Creator']);
                     } else {
                         return in_array($result['media_type'], ['movie', 'tv']);
                     }
