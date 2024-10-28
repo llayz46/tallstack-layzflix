@@ -16,6 +16,8 @@ class Show extends Component
 
     public function render()
     {
+        $this->authorize('view', $this->playlist);
+
         return view('livewire.playlist.show', [
             'playlist' => $this->playlist,
             'medias' => $this->playlist->medias()->paginate(10),

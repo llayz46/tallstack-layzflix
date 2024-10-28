@@ -10,8 +10,13 @@ class PlaylistPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user): bool
+    public function view(?User $user, Playlist $playlist): bool
     {
+        if ($user) {
+            return $playlist->visibility || $user->id === $playlist->user_id;
+        } else {
+            return $playlist->visibility;
+        }
     }
 
     public function update(User $user, Playlist $playlist): bool

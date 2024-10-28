@@ -14,6 +14,7 @@ Route::get('/{user:slug}/profile', Profile::class)->name('profile');
 Route::get('/{user:slug}/playlist/{playlist}', \App\Livewire\Playlist\Show::class)->name('playlist');
 Route::get('/{user:slug}/medias', FavoriteMedia::class)->name('favorite-media');
 Route::get('/{user:slug}/reviews', Reviews::class)->name('reviews');
+Route::get('/{user:slug}/playlists', \App\Livewire\Playlist\Browse::class)->name('playlists');
 
 Route::get('/browse', [BrowseController::class, 'search'])->name('browse');
 
