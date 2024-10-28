@@ -2,13 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Component;
 
 class Profile extends Component
 {
+    use InteractsWithBanner;
+
     public User $user;
     public int $mediaFavoritesCount;
     public array $mediaFavorites;
@@ -41,6 +45,24 @@ class Profile extends Component
     public function unfollow(User $user): void
     {
         Auth::user()->following()->detach($user);
+    }
+
+    public function deletePlaylist(Playlist $playlist)
+    {
+        $this->authorize('delete', $playlist);
+
+        $playlist->delete();
+
+        $this->banner('La playlist a bien été supprimée.');
+    }
+
+    public function updateVisibility(Playlist $playlist)
+    {
+        $this->authorize('update', $playlist);
+
+        $playlist->update([
+            'visibility' => !$playlist->visibility,
+        ]);
     }
 
     public function render(): View

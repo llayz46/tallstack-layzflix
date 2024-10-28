@@ -9,7 +9,7 @@
         <x-breadcrumb :$media :director="$media['directors']" />
     </div>
 
-    <div>
+    <div x-data="{ playlistDrawer: false }">
         <div class="mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16 relative">
                 <div class="lg:col-span-4 lg:row-end-1">
@@ -84,13 +84,11 @@
                             <p class="relative -ml-px inline-flex items-center rounded-r-md bg-background-accent/25 px-3 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-background-accent-hover focus:z-10 cursor-default">{{ $favoriteCount }}</p>
                         </div>
 
-                        <button type="button" class="rounded-full bg-primary-600 p-1.5 ml-2 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
+                        <button type="button" @click="playlistDrawer = true" class="rounded-full bg-primary-600 p-1.5 ml-2 text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600">
                             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                             </svg>
                         </button>
-
-{{--                        <x-drawer :media="$movie"/>--}}
                     @endauth
 
                     @if ($media['credits']['cast'])
@@ -127,7 +125,10 @@
                     <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-primary-600/50 to-primary-800/50 opacity-20" style="clip-path:polygon(58.2% 28.2%, 65.6% 17.4%, 79% 10%, 95.4% 24.4%, 98% 35%, 97.4% 47.2%, 90.4% 55.8%, 92.8% 66.8%, 99.4% 78%, 83.2% 77.8%, 77.2% 74%, 74.6% 66.4%, 79.8% 61.2%, 77.4% 55%, 86.4% 46.6%, 72.8% 42%, 58.4% 28.6%, 39.8% 35.8%, 32.4% 42.8%, 47.2% 54.4%, 39.6% 60.2%, 34.2% 68%, 31.8% 81.2%, 26.4% 94.2%, 12% 90%, 4% 79.8%, 4.4% 63.6%, 20% 57.4%, 23.8% 48.6%, 20% 36.2%, 12.8% 25.8%, 18.6% 15.2%, 30.4% 17.6%, 36.8% 27.4%);"></div>
                 </div>
 
-                <livewire:review :$media/>
+                <livewire:review :$media />
+                @auth
+                    <livewire:playlist-drawer :$media />
+                @endauth
             </div>
         </div>
     </div>

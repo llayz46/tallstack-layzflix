@@ -97,4 +97,18 @@
             @endforeach
         </div>
     </x-profile-section>
+
+    <x-profile-section class="mt-12 mb-20">
+        <x-slot:title>Les dernières playlists</x-slot:title>
+        <x-slot:description>Les 2 dernières playlists de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
+        <x-slot:button>
+            <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
+        </x-slot:button>
+
+        <div class="grid gap-x-6 gap-y-6 grid-cols-1 lg:grid-cols-2">
+            @foreach($user->playlists->sortByDesc('created_at')->take(2) as $playlist)
+                <x-card.playlist :$playlist :$user/>
+            @endforeach
+        </div>
+    </x-profile-section>
 </div>
