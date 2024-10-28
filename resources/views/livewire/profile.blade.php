@@ -21,7 +21,7 @@
         <x-slot:title>Critiques récentes</x-slot:title>
         <x-slot:description>Les {{ count($reviews) }} dernières critiques de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
         <x-slot:button>
-            <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
+            <x-button type="secondary" class="mt-auto" href="{{ route('reviews', $user->slug) }}">Voir tout</x-button>
         </x-slot:button>
 
         <div class="grid gap-x-6 gap-y-6 grid-cols-1 lg:grid-cols-2">
