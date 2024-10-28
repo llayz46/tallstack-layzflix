@@ -36,6 +36,7 @@ class Profile extends Component
     public function follow(User $user): void
     {
         if (Auth::user()->is($user)) {
+            $this->dangerBanner('Vous ne pouvez pas vous suivre vous-même.');
             return;
         }
 

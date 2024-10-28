@@ -56,7 +56,6 @@ class DatabaseSeeder extends Seeder
 
         $johnDoe->followers()->attach(1);
         $johnDoe->followers()->attach(range(31, 61));
-        $johnDoe->following()->attach(1);
         $johnDoe->following()->attach(range(77, 94));
 
         $lastUser->followers()->attach(1);

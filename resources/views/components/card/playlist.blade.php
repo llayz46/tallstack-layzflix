@@ -2,7 +2,7 @@
 
 <li class="overflow-hidden rounded-xl border border-border-normal list-none">
     <div class="flex items-center justify-between gap-x-4 border-b border-background-accent-hover bg-background-accent-hover p-6">
-        <div class="text-sm font-medium leading-6 text-gray-300">{{ $playlist->name }}</div>
+        <a href="{{ route('playlist', [$user->slug, $playlist]) }}" class="text-sm font-medium leading-6 text-gray-300 hover:no-underline underline">{{ $playlist->name }}</a>
         <div class="inline-flex gap-2">
             @auth
                 @can('delete', $playlist)
@@ -11,8 +11,6 @@
                     </form>
                 @endcan
             @endauth
-
-{{--            <x-button type="secondary" :href="route('playlist.show', ['user' => $user->username, 'playlist' => $playlist, 'name' => Str::slug($playlist->name)])">View</x-button>--}}
         </div>
     </div>
     <dl class="-my-3 divide-y divide-background-accent-hover px-6 py-4 text-sm leading-6">

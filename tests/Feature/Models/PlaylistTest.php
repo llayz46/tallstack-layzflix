@@ -122,3 +122,29 @@ it('can update a playlist', function () {
         ->and($playlist->description)->toBe('Updated description');
 });
 
+it('can fetch medias related to an playlist', function () {
+    $playlist = Playlist::factory()->create();
+
+    $media1 = Media::create([
+        'media_id' => 1,
+        'media_type' => 'movie',
+        'normalized_title' => 'Test Movie',
+        'overview' => 'Test Movie Overview',
+    ]);
+
+    $media2 = Media::create([
+        'media_id' => 2,
+        'media_type' => 'movie',
+        'normalized_title' => 'Test Movie 2',
+        'overview' => 'Test Movie Overview 2',
+    ]);
+
+    $playlist->medias()->attach($media1->id);
+    $playlist->medias()->attach($media2->id);
+
+    $medias = $playlist->medias;
+
+    expect($medias->count())->toBe(2)
+        ->and($medias->first()->id)->toBe($media1->id)
+        ->and($medias->last()->id)->toBe($media2->id);
+});

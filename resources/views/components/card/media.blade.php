@@ -1,6 +1,6 @@
 @props(['media', 'rank' => false])
 
-<a href="{{ route('show', ['id' => in_array(Route::currentRouteName(), ['profile', 'home']) ? $media['media_id'] : $media['id'], 'type' => $media['media_type'], 'slug' => Str::slug($media['normalized_title'])]) }}" wire:navigate
+<a href="{{ route('show', ['id' => in_array(Route::currentRouteName(), ['profile', 'home', 'playlist']) ? $media['media_id'] : $media['id'], 'type' => $media['media_type'], 'slug' => Str::slug($media['normalized_title'])]) }}" wire:navigate
    {{ $attributes->class(['rounded-lg bg-background-normal group relative after:absolute after:size-full after:bg-red-500 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:-z-[1] after:p-0.5 after:box-content after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100 after:transform after:inset-0 after:rounded-lg after:bg-conic-gradient after:animate-border-spin']) }}>
     @if($rank)
         {{ $rank }}

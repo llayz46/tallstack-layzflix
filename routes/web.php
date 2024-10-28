@@ -16,6 +16,8 @@ Route::get('/browse/directors/{id}-{slug}', [BrowseController::class, 'person'])
 
 Route::get('/show/{id}-{type}-{slug}', Show::class)->name('show');
 
+Route::get('/{user:slug}/playlist/{playlist}', \App\Livewire\Playlist\Show::class)->name('playlist');
+
 //Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 //    Route::get('/dashboard', function () {
 //        return view('dashboard');
