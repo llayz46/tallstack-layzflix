@@ -1,5 +1,7 @@
 <div class="border-t border-background-accent-hover mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-8 sm:pt-6">
-    <livewire:profile-header :$user />
+    @persist('profile-header')
+        <livewire:profile-header :$user />
+    @endpersist
 
     <x-profile-section class="mt-6 mb-20">
         <x-slot:title>Playlist : {{ $playlist->name }}</x-slot:title>

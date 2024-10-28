@@ -1,11 +1,13 @@
 <div class="border-t border-background-accent-hover mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-8 sm:pt-6">
-    <livewire:profile-header :$user />
+    @persist('profile-header')
+        <livewire:profile-header :$user />
+    @endpersist
 
     <x-profile-section class="mt-6">
         <x-slot:title>Films et séries préférés</x-slot:title>
         <x-slot:description>Les {{ count($mediaFavorites) }} derniers films favoris de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
         <x-slot:button>
-            <x-button type="secondary" class="mt-auto" href="#">Voir tout</x-button>
+            <x-button type="secondary" class="mt-auto" href="{{ route('favorite-media', $user->slug) }}">Voir tout</x-button>
         </x-slot:button>
 
         <div class="grid gap-x-6 gap-y-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
