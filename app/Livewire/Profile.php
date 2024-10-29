@@ -33,21 +33,6 @@ class Profile extends Component
         $this->followers = $user->followers()->count();
     }
 
-    public function follow(User $user): void
-    {
-        if (Auth::user()->is($user)) {
-            $this->dangerBanner('Vous ne pouvez pas vous suivre vous-même.');
-            return;
-        }
-
-        Auth::user()->following()->attach($user);
-    }
-
-    public function unfollow(User $user): void
-    {
-        Auth::user()->following()->detach($user);
-    }
-
     public function deletePlaylist(Playlist $playlist)
     {
         $this->authorize('delete', $playlist);

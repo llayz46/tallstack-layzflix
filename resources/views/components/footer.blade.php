@@ -53,10 +53,10 @@
                                 <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Devenir Premium</a>
                             </li>
                             <li>
-                                <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Accueil</a>
+                                <a href="{{ route('home') }}" class="text-sm leading-6 text-neutral-400 hover:text-white">Accueil</a>
                             </li>
                             <li>
-                                <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Connexion</a>
+                                <a href="{{ route('login') }}" class="text-sm leading-6 text-neutral-400 hover:text-white">Connexion</a>
                             </li>
                         </ul>
                     </div>

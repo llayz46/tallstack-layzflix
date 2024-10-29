@@ -48,7 +48,7 @@
 
             @guest
                 <x-button type="link" href="{{ route('login') }}" type="secondary">Message</x-button>
-                <x-button type="link" href="{{ route('login') }}">Add friend</x-button>
+                <x-button type="link" href="{{ route('login') }}">Follow</x-button>
             @endguest
         </div>
     </div>

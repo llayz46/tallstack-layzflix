@@ -1,7 +1,5 @@
 <div class="border-t border-background-accent-hover mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-8 sm:pt-6">
-    @persist('profile-header')
-        <livewire:profile-header :$user />
-    @endpersist
+    <livewire:profile-header :$user />
 
     <x-profile-section class="mt-6">
         <x-slot:title>Films et séries préférés</x-slot:title>
