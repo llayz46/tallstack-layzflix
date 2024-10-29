@@ -16,17 +16,17 @@ class Add extends Component
     public $playlist;
     public array $media;
 
+    #[On('playlistUpdated')]
+    public function loadPlaylists()
+    {
+        $this->playlists = auth()->user()->playlists;
+    }
+
     public function mount(array $media)
     {
         $this->loadPlaylists();
 
         $this->media = $media;
-    }
-
-    #[On('playlistUpdated')]
-    public function loadPlaylists()
-    {
-        $this->playlists = auth()->user()->playlists;
     }
 
     public function save()
