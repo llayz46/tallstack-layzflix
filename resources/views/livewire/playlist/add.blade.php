@@ -1,4 +1,4 @@
-<form class="flex h-full flex-col divide-y divide-background-accent-hover bg-background-accent shadow-xl" method="POST" wire:submit.prevent="save" x-show="activeTab === 'AddPlaylist'">
+<form class="flex h-full flex-col divide-y divide-background-accent-hover bg-background-accent shadow-xl" method="POST" wire:submit.prevent="add" x-show="activeTab === 'AddPlaylist'">
     <div class="h-0 flex-1 overflow-y-auto">
         <x-playlist-header-drawer/>
         <div class="flex pt-1 gap-2 text-base font-medium leading-6 text-center">
@@ -15,7 +15,10 @@
                         @foreach($playlists as $playlist)
                             <option value="{{ $playlist->id }}" wire:key="{{ $playlist->id }}">{{ $playlist->name }}</option>
                         @endforeach
+
                     </select>
+
+                    @error('playlist') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
         </div>

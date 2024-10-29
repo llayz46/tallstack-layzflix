@@ -6,6 +6,7 @@ use App\Models\Media;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Jetstream\InteractsWithBanner;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Add extends Component
@@ -13,8 +14,10 @@ class Add extends Component
     use InteractsWithBanner;
 
     public Collection $playlists;
-    public $playlist;
     public array $media;
+
+    #[Validate('required', message: 'Vous devez choisir une playlist.')]
+    public $playlist = '';
 
     #[On('playlistUpdated')]
     public function loadPlaylists()
@@ -29,11 +32,13 @@ class Add extends Component
         $this->media = $media;
     }
 
-    public function save()
+    public function add()
     {
         if (!auth()->check()) {
             $this->dangerBanner('Vous devez être connecté pour laisser un avis.');
         }
+
+        $this->validate();
 
         $media = Media::firstOrCreate([
             'media_id' => $this->media['id'],
