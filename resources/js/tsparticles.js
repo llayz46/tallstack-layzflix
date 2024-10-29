@@ -5,7 +5,7 @@ tsParticles.load("tsparticles", {
             speed: 0.5
         },
         number: {
-            value: 60
+            value: 70
         },
         size: {
             value: { min: 1.5, max: 2.5 }
