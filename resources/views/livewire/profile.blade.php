@@ -24,7 +24,7 @@
 
         <div class="grid gap-x-6 gap-y-6 grid-cols-1 lg:grid-cols-2">
             @foreach($reviews as $review)
-                <x-card.review class="pb-5 border-b border-background-accent-hover max-[315px]:flex-col" :profile="true" :$review/>
+                <x-card.review class="pb-5 border-b border-background-accent-hover max-sm:flex-col" :profile="true" :$review/>
             @endforeach
         </div>
     </x-profile-section>

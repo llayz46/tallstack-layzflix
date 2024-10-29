@@ -1,14 +1,14 @@
-<div class="flex justify-between w-full">
-    <div class="w-1/2">
+<div class="flex justify-between max-sm:flex-col w-full">
+    <div class="sm:w-1/2">
         <div class="flex items-start space-x-5">
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 my-auto">
                 <div class="relative">
                     <img class="h-16 w-16 rounded-full object-cover shadow-inner" src="{{ $user->getProfilePhoto() }}"
                          alt="">
                     <span class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></span>
                 </div>
             </div>
-            <div class="pt-1.5">
+            <div class="sm:pt-1.5">
                 <h1 class="text-2xl font-bold text-white">{{ $user->username }}</h1>
                 <p class="text-sm font-medium text-neutral-400">{{ Str::ucfirst($user->biography) }}</p>
             </div>
@@ -48,12 +48,12 @@
 
             @guest
                 <x-button type="link" href="{{ route('login') }}" type="secondary">Message</x-button>
-                <x-button type="link" href="{{ route('login') }}">Follow</x-button>
+                <x-button type="link" class="justify-center" href="{{ route('login') }}">Follow</x-button>
             @endguest
         </div>
     </div>
 
-    <div class="mt-3 w-1/3 text-end space-y-1">
+    <div class="mt-3 sm:w-1/3 text-end space-y-1">
         @if($user->isPremium())
             <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset text-primary-600 bg-gradient-to-tr from-primary-500/10 to-primary-950/30 ring-rose-500/20">Premium</span>
         @endif
