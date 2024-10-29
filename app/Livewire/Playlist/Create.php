@@ -37,6 +37,8 @@ class Create extends Component
 
         $this->reset();
 
+        $this->dispatch('playlistUpdated');
+
         $this->banner('Playlist créée avec succès !');
     }
 }

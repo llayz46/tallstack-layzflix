@@ -8,7 +8,7 @@
         <div class="flex flex-1 flex-col justify-between">
             <div class="divide-y divide-background-accent-hover px-4 sm:px-6">
                 <div class="pb-5 pt-6">
-                    <x-label for="playlist-select">Nom de votre playlist</x-label>
+                    <x-label for="playlist-select">Ajouter à une de vos playlist</x-label>
                     <select id="playlist-select" wire:model="playlist" class="py-2 px-4 pe-9 mt-2 block w-full text-neutral-300 bg-background-accent border-neutral-700 rounded-md shadow-sm text-sm focus:border-primary-600 focus:ring-primary-600 disabled:opacity-50 disabled:pointer-events-none">
                         <option value="" disabled selected>Sélectionnez une playlist</option>
 

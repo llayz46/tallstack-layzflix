@@ -5,6 +5,7 @@ namespace App\Livewire\Playlist;
 use App\Models\Media;
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Jetstream\InteractsWithBanner;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Add extends Component
@@ -17,9 +18,15 @@ class Add extends Component
 
     public function mount(array $media)
     {
-        $this->playlists = auth()->user()->playlists;
+        $this->loadPlaylists();
 
         $this->media = $media;
+    }
+
+    #[On('playlistUpdated')]
+    public function loadPlaylists()
+    {
+        $this->playlists = auth()->user()->playlists;
     }
 
     public function save()
