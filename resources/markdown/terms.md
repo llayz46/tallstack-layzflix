@@ -13,7 +13,7 @@ Pour publier des critiques ou accéder à certaines fonctionnalités, vous devez
 Les critiques publiées par les utilisateurs restent leur propriété. En publiant sur LayzFlix, vous accordez à LayzFlix une licence non exclusive pour utiliser, afficher et distribuer vos critiques à des fins promotionnelles. Tout contenu publié doit être conforme aux lois en vigueur et respecter les présentes Conditions.
 
 ## 5. Politique de Confidentialité
-La confidentialité de vos données est importante pour nous. Veuillez consulter notre [Politique de Confidentialité](######) pour comprendre comment nous collectons, utilisons et protégeons vos données personnelles.
+La confidentialité de vos données est importante pour nous. Veuillez consulter notre [Politique de Confidentialité](privacy-policy) pour comprendre comment nous collectons, utilisons et protégeons vos données personnelles.
 
 ## 6. Abonnement Premium
 LayzFlix propose un abonnement premium offrant un accès à des fonctionnalités exclusives telles que l'affichage de la liste des utilisateurs qui vous suivent et un badge spécial sur votre profil. En souscrivant à un abonnement, vous acceptez d’effectuer les paiements récurrents selon le prix et la fréquence spécifiés lors de l’inscription.
@@ -34,4 +34,4 @@ LayzFlix ne pourra être tenu responsable de tout dommage ou perte découlant de
 Les présentes Conditions sont régies par les lois de France. Tout litige lié à l’utilisation de LayzFlix sera soumis à la compétence exclusive des tribunaux de Paris, France.
 
 ## 12. Nous Contacter
-Pour toute question ou préoccupation concernant ces Conditions, veuillez contacter notre support à [adresse e-mail de support](######).
+Pour toute question ou préoccupation concernant ces Conditions, veuillez contacter notre support à **contact@llayz.fr**.

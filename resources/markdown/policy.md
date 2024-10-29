@@ -49,4 +49,4 @@ LayzFlix se réserve le droit de mettre à jour cette Politique de Confidentiali
 
 ## 10. Nous Contacter
 
-Pour toute question ou préoccupation relative à cette Politique de Confidentialité, veuillez nous contacter à **[adresse e-mail]**.
+Pour toute question ou préoccupation relative à cette Politique de Confidentialité, veuillez nous contacter à **contact@llayz.fr**.
