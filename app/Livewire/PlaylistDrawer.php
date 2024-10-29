@@ -12,9 +12,4 @@ class PlaylistDrawer extends Component
     {
         $this->media = $media;
     }
-
-    public function render()
-    {
-        return view('livewire.playlist-drawer');
-    }
 }

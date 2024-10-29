@@ -36,10 +36,10 @@
                         <h3 class="text-sm font-semibold leading-6 text-gray-300">Légales</h3>
                         <ul role="list" class="mt-6 space-y-4">
                             <li>
-                                <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Conditions d'utilisation</a>
+                                <a href="{{ route('terms.show') }}" class="text-sm leading-6 text-neutral-400 hover:text-white">Conditions d'utilisation</a>
                             </li>
                             <li>
-                                <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Politique de confidentialité</a>
+                                <a href="{{ route('policy.show') }}" class="text-sm leading-6 text-neutral-400 hover:text-white">Politique de confidentialité</a>
                             </li>
                             <li>
                                 <a href="#" class="text-sm leading-6 text-neutral-400 hover:text-white">Mentions légales</a>
