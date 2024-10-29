@@ -15,6 +15,10 @@
     </div>
     <dl class="-my-3 divide-y divide-background-accent-hover px-6 py-4 text-sm leading-6">
         <div class="flex justify-between gap-x-4 py-3">
+            <dt class="text-neutral-400">Description</dt>
+            <dd class="text-gray-300 line-clamp-1">{{ $playlist->description }}</dd>
+        </div>
+        <div class="flex justify-between gap-x-4 py-3">
             <dt class="text-neutral-400">Créé le</dt>
             <dd class="text-gray-300"><time datetime="{{ $playlist['created_at'] }}">{{ Illuminate\Support\Carbon::createFromDate($playlist['created_at'])->translatedFormat('j') }} {{ ucfirst(Illuminate\Support\Carbon::createFromDate($playlist['created_at'])->translatedFormat('F')) }} {{ Illuminate\Support\Carbon::createFromDate($playlist['created_at'])->translatedFormat('Y') }}</time></dd>
         </div>

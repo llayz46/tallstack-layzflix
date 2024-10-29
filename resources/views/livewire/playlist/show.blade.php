@@ -18,7 +18,7 @@
             @foreach($medias as $media)
                 <div class="flex flex-col gap-4" wire:key="{{ $media->id }}">
                     <x-card.media :$media/>
-                    <x-button>Supprimer</x-button>
+                    <x-button wire:click="delete({{ $media->id }})">Supprimer</x-button>
                 </div>
             @endforeach
         </div>
