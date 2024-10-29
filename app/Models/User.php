@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\InteractsWithBanner;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use InteractsWithBanner;
 
     /**
      * The attributes that are mass assignable.
@@ -143,10 +145,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     protected function levelUp(): void
-        {
+    {
         foreach ($this->levels as $level => $xpRequired) {
             if ($this->xp >= $xpRequired) {
                 $this->level = $level;
+                $this->banner('Bravo ! Vous avez atteint le niveau ' . $level . ' !');
             }
         }
     }
