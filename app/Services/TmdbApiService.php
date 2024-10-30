@@ -132,6 +132,7 @@ class TmdbApiService
             $request = Http::get($this->baseUrl . 'search/multi', [
                 'query' => $query,
                 'api_key' => $this->apiKey,
+                'language' => 'fr-FR',
                 'page' => $page,
             ])->json();
 
@@ -151,8 +152,11 @@ class TmdbApiService
     {
         $request = Http::get($this->baseUrl . $type . '/' . $id, [
             'api_key' => $this->apiKey,
-            'append_to_response' => 'credits',
             'language' => 'fr-FR',
+        ])->json();
+
+        $request['credits'] = Http::get($this->baseUrl . $type . '/' . $id . '/credits', [
+            'api_key' => $this->apiKey,
         ])->json();
 
         if(isset($request['status_code'])) {
@@ -173,6 +177,12 @@ class TmdbApiService
 
         $results = $results->merge($request['crew']);
 
-        return $this->normalizeBrowseResults($results, true);
+        $resultNormalized = $this->normalizeBrowseResults($results, true);
+
+        $grouped = $resultNormalized->groupBy('id');
+
+        return $grouped->map(function ($group) {
+            return $group->first();
+        });
     }
 }
