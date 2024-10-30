@@ -12,7 +12,7 @@ class Reviews extends Component
     public function render()
     {
         return view('livewire.reviews', [
-            'reviews' => $this->user->reviews()->paginate(10),
+            'reviews' => $this->user->reviews->sortByDesc('created_at')->paginate(10),
         ])
             ->layout('layouts.app')
             ->title($this->user->username . ' - ' . 'Critiques' . ' - LayzFlix');

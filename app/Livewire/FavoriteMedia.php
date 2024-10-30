@@ -12,7 +12,7 @@ class FavoriteMedia extends Component
     public function render()
     {
         return view('livewire.favorite-media', [
-            'mediaFavorites' => $this->user->favoriteMedias()->paginate(10),
+            'mediaFavorites' => $this->user->favoriteMedias->sortByDesc('created_at')->paginate(10),
         ])
             ->layout('layouts.app')
             ->title($this->user->username . ' - ' . 'Favoris' . ' - LayzFlix');

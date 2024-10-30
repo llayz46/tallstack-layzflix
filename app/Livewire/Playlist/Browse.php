@@ -35,12 +35,12 @@ class Browse extends Component
     {
         if(auth()->check()) {
             if (auth()->user()->is($this->user)) {
-                $playlists = $this->user->playlists()->paginate(8);
+                $playlists = $this->user->playlists->sortByDesc('created_at')->paginate(8);
             } else {
-                $playlists = $this->user->playlists()->where('visibility', true)->paginate(8);
+                $playlists = $this->user->playlists->sortByDesc('created_at')->where('visibility', true)->paginate(8);
             }
         } else {
-            $playlists = $this->user->playlists()->where('visibility', true)->paginate(8);
+            $playlists = $this->user->playlists->sortByDesc('created_at')->where('visibility', true)->paginate(8);
         }
 
         return view('livewire.playlist.browse', [
