@@ -25,10 +25,10 @@ class Profile extends Component
         $this->user = $user;
 
         $this->mediaFavoritesCount = $user->favoriteMedias->count();
-        $this->mediaFavorites = $user->favoriteMedias->take(5)->toArray();
+        $this->mediaFavorites = $user->favoriteMedias->sortByDesc('created_at')->take(5)->toArray();
 
         $this->reviewsCount = $user->reviews->count();
-        $this->reviews = $user->reviews->take(5)->load('media')->toArray();
+        $this->reviews = $user->reviews->sortByDesc('created_at')->take(4)->load('media')->toArray();
 
         $this->followers = $user->followers()->count();
     }
