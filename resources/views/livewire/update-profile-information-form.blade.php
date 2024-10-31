@@ -81,6 +81,13 @@
                 @endif
             @endif
         </div>
+
+        <!-- Biographie -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="biography" value="{{ __('Biographie') }}" />
+            <x-input id="biography" type="text" class="mt-1 block w-full" wire:model="state.biography" required autocomplete="biography" />
+            <x-input-error for="biography" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
