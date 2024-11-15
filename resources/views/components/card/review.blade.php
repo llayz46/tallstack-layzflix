@@ -3,7 +3,7 @@
 @if(!$profile)
     <div class="backdrop-blur-[3px] bg-background-accent-hover/25 isolate ring-1 ring-background-accent-hover flex p-4 gap-3 rounded-xl">
         <a href="{{ route('profile', $review['user']['slug']) }}" class="shrink-0">
-            <img src="{{ $review['user']->getProfilePhoto() }}" class="rounded-full size-10 hover:scale-105 transition" alt="Photo de profil">
+            <img src="{{ $review['user']->getProfilePhoto() }}" class="rounded-full object-cover size-10 hover:scale-105 transition" alt="Photo de profil">
         </a>
         <div class="space-y-2 w-full">
             <h3 class="font-semibold text-gray-300">{{ $review['user']['username'] }}</h3>
