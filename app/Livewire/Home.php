@@ -15,11 +15,16 @@ class Home extends Component
 {
     public function render()
     {
-        $topRatedMediaFromReview = Review::select('media_id', DB::raw('AVG(rating) as avg_rating'))
+        $topRatedMediaFromReview = Review::select(
+            'media_id',
+            DB::raw('AVG(rating) as avg_rating'),
+            DB::raw('COUNT(rating) as review_count'))
             ->groupBy('media_id')
             ->orderByDesc('avg_rating')
+            ->orderByDesc('review_count')
             ->with('media')
-            ->get()->take(3);
+            ->take(3)
+            ->get();
 
         $topRatedMedia = collect();
 
