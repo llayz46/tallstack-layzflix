@@ -104,7 +104,7 @@
                                     </ul>
                                 </div>
                                 <div class="flex-shrink-0">
-                                    <x-button type="button">@if($content) Modifier @else Poster @endif</x-button>
+                                    <x-button type="button">{{ $posted }}</x-button>
                                 </div>
                             </div>
                         </div>

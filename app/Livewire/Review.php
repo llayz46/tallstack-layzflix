@@ -12,6 +12,8 @@ class Review extends Component
 {
     use WithPagination, InteractsWithBanner;
 
+    public string $posted = 'Poster';
+
     public array $media;
 
     #[Validate('required', message: 'Vous devez saisir une note.')]
@@ -62,6 +64,8 @@ class Review extends Component
 
         auth()->user()->addXp(30);
 
+        $this->posted = 'Modifier';
+
         $this->banner('Votre critique a bien été postée.');
     }
 
@@ -89,6 +93,7 @@ class Review extends Component
         if ($review) {
             $this->rating = $review->rating;
             $this->content = $review->content;
+            $this->posted = 'Modifier';
         }
     }
 

@@ -18,7 +18,11 @@
             @foreach($medias as $media)
                 <div class="flex flex-col gap-4" wire:key="{{ $media->id }}">
                     <x-card.media :$media/>
-                    <x-button wire:click="delete({{ $media->id }})">Supprimer</x-button>
+                    @auth
+                        @if($playlist->user->id === auth()->user()->id)
+                            <x-button wire:click="delete({{ $media->id }})">Supprimer</x-button>
+                        @endif
+                    @endauth
                 </div>
             @endforeach
         </div>
