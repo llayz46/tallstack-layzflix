@@ -31,7 +31,7 @@
 
     <x-profile-section class="mt-12 mb-20">
         <x-slot:title>Les dernières playlists</x-slot:title>
-        <x-slot:description>Les {{ count($user->playlists) > 2 ? '2' : count($user->playlists) }} dernières playlists de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
+        <x-slot:description>Les {{ count($user->playlists->where('visibility', true)) > 2 ? '2' : count($user->playlists->where('visibility', true)) }} dernières playlists de <span class="font-medium">{{ $user->username }}</span></x-slot:description>
         <x-slot:button>
             <x-button type="secondary" class="mt-auto" href="{{ route('playlists', $user->slug) }}">Voir tout</x-button>
         </x-slot:button>
